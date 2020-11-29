@@ -11,19 +11,16 @@
 template<Vertex>
 class Graph {
 public:
-    Graph();
     Graph(vector<Vertex> vertices, vector<Edge> edges);
-    Graph(unsigned int numVertices);
 
     vector<Vertex> getAdjacent(Vertex src) const;
     vector<Vertex> getVertices() const;
     vector<Edge> getEdges() const;
     Edge getEdge(Vertex source, Vertex destination) const;
-    void insertEdge(Vertex src, Vertex dest);
+    void insertEdge(Vertex src, Vertex dest, double weight=1);
     double getEdgeWeight(Vertex src, Vertex dest) const;
     Edge removeEdge(Vertex src, Vertex dest);
-    bool edgeExists(Vertex v1, Vertex v2);
-    vector<Edge> getEdges(Vertex v);
+    bool edgeExists(Vertex v1, Vertex v2) const;
 private:
     mutable unordered_map<Vertex, unordered_map<Vertex, Edge>> adj;
 };
