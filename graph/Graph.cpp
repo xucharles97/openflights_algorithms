@@ -5,6 +5,12 @@
 #include "Graph.h"
 #include "Edge.h"
 #include <unordered_map>
+#include <vector>
+#include <utility>
+
+using std::vector;
+using std::pair;
+using std::make_pair;
 
 template<Vertex>
 Graph<Vertex>::Graph(vector<Vertex> vertices, vector<Edge<Vertex>> edges) {
@@ -29,10 +35,24 @@ vector<Vertex> Graph<Vertex>::getAdjacent(Vertex src) const {
 }
 
 template<Vertex>
+vector<pair<Vertex, double>> Graph<Vertex>::getAdjacentWeighted(Vertex src) const {
+    auto loc = adj.find(src);
+    if (loc == adj.end()) {
+        return vector<pair<Vertex, double>>();
+    }
+    vector<pair<Vertex, double>> vertex_list;
+    unordered_map<Vertex, Edge<Vertex>> &source_list = adj[source];
+    for (auto &elem : source_list) {
+        vertex_list.push_back(make_pair(elem.first, elem.second.getWeight()));
+    }
+    return vertex_list;
+}
+
+template<Vertex>
 vector<Vertex> Graph<Vertex>::getVertices() const {
     vector<Vertex> vertices;
     for (auto &pair : adj) {
-        vertices.append(pair.first);
+        vertices.push_back(pair.first);
     }
     return vertices;
 }

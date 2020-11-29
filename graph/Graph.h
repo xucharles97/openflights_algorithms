@@ -4,9 +4,17 @@
 
 #ifndef MADHAV2_MGEIMER2_ECHUDOV2_CYX2_GRAPH_H
 #define MADHAV2_MGEIMER2_ECHUDOV2_CYX2_GRAPH_H
+
+#pragma once
+
 #include <vector>
 #include <unordered_map>
 #include "Edge.h"
+#include <utility>
+
+using std::vector;
+using std::unordered_map;
+using std::pair;
 
 template<Vertex>
 class Graph {
@@ -14,6 +22,7 @@ public:
     Graph(vector<Vertex> vertices, vector<Edge> edges);
 
     vector<Vertex> getAdjacent(Vertex src) const;
+    vector<pair<Vertex, double>> getAdjacentWeighted(Vertex src) const {
     vector<Vertex> getVertices() const;
     vector<Edge> getEdges() const;
     Edge getEdge(Vertex source, Vertex destination) const;
