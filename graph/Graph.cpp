@@ -114,5 +114,5 @@ Edge<Vertex> Graph<Vertex>::removeEdge(Vertex src, Vertex dest) const {
 
 template<Vertex>
 bool Graph<Vertex>::edgeExists(Vertex v1, Vertex v2) const {
-    return adj.find(v1) && adj[v1].find(v2);
+    return adj.find(v1) != adj.end() && adj[v1].find(v2) != adj[v1].end();
 }
