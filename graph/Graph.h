@@ -2,9 +2,6 @@
 // Created by elia on 11/29/20.
 //
 
-#ifndef MADHAV2_MGEIMER2_ECHUDOV2_CYX2_GRAPH_H
-#define MADHAV2_MGEIMER2_ECHUDOV2_CYX2_GRAPH_H
-
 #pragma once
 
 #include <vector>
@@ -12,27 +9,26 @@
 #include "Edge.h"
 #include <utility>
 
-using std::vector;
-using std::unordered_map;
 using std::pair;
+using std::unordered_map;
+using std::vector;
 
-template<Vertex>
-class Graph {
+template <typename Vertex>
+class Graph
+{
 public:
-    Graph(vector<Vertex> vertices, vector<Edge> edges);
+    Graph<Vertex>(vector<Vertex> vertices, vector<Edge<Vertex>> edges);
 
     vector<Vertex> getAdjacent(Vertex src) const;
-    vector<pair<Vertex, double>> getAdjacentWeighted(Vertex src) const {
+    vector<pair<Vertex, double>> getAdjacentWeighted(Vertex src) const;
     vector<Vertex> getVertices() const;
-    vector<Edge> getEdges() const;
-    Edge getEdge(Vertex source, Vertex destination) const;
-    void insertEdge(Vertex src, Vertex dest, double weight=1);
+    vector<Edge<Vertex>> getEdges() const;
+    Edge<Vertex> getEdge(Vertex source, Vertex destination) const;
+    void insertEdge(Vertex src, Vertex dest, double weight = 1);
     double getEdgeWeight(Vertex src, Vertex dest) const;
-    Edge removeEdge(Vertex src, Vertex dest);
+    Edge<Vertex> removeEdge(Vertex src, Vertex dest);
     bool edgeExists(Vertex v1, Vertex v2) const;
+
 private:
-    mutable unordered_map<Vertex, unordered_map<Vertex, Edge>> adj;
+    mutable unordered_map<Vertex, unordered_map<Vertex, Edge<Vertex>>> adj;
 };
-
-
-#endif //MADHAV2_MGEIMER2_ECHUDOV2_CYX2_GRAPH_H

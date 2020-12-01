@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="fixed small bug in edgeExists bc i forgot to compare to end iterator, supes awks">
+      <change afterPath="$PROJECT_DIR$/.idea/madhav2-mgeimer2-echudov2-cyx2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/Edge.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Edge.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/graph.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/tests/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph/tests/test.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="BRANCH" value="master" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1kRI0mwDlwsQkcKL8W9nbmk88a9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+  </component>
+  <component name="RunManager" selected="Makefile.graph.mk">
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PHONY" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/graph/graph.mk" target="PHONY" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <configuration name="graph.mk" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/graph/graph.mk" target="" workingDirectory="" arguments="">
+        <envs />
+      </makefile>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Makefile.graph.mk" />
+        <item itemvalue="Makefile.PHONY" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="" />
+      <created>1605656756711</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1605656756711</updated>
+      <workItem from="1605656757749" duration="607000" />
+      <workItem from="1606679569128" duration="9547000" />
+    </task>
+    <task id="LOCAL-00001" summary="edge functionality finished&#10;&#10;implementing graph now">
+      <created>1606681358182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1606681358182</updated>
+    </task>
+    <task id="LOCAL-00002" summary="finished first pass at graphs, need to make tests &amp;&amp; makefile">
+      <created>1606683876492</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1606683876492</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fixed append to push_back i love python&#10;&#10;also added another function getAdjacencyWeighted that gets an adjacency list with weights so we don't need to worry about reaccessing">
+      <created>1606684537234</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1606684537234</updated>
+    </task>
+    <task id="LOCAL-00004" summary="fixed small bug in edgeExists bc i forgot to compare to end iterator, supes awks">
+      <created>1606685664895</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1606685664895</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="edge functionality finished&#10;&#10;implementing graph now" />
+    <MESSAGE value="finished first pass at graphs, need to make tests &amp;&amp; makefile" />
+    <MESSAGE value="fixed append to push_back i love python&#10;&#10;also added another function getAdjacencyWeighted that gets an adjacency list with weights so we don't need to worry about reaccessing" />
+    <MESSAGE value="fixed small bug in edgeExists bc i forgot to compare to end iterator, supes awks" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed small bug in edgeExists bc i forgot to compare to end iterator, supes awks" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="719" y="895" width="567" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606684584890">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state x="719" y="895" width="567" height="403" key="#com.intellij.fileTypes.FileTypeChooser/64.27.3776.2133@64.27.3776.2133" timestamp="1606684584890" />
+    <state width="1842" height="632" key="GridCell.Tab.0.bottom" timestamp="1606686178168">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state width="1842" height="632" key="GridCell.Tab.0.bottom/64.27.3776.2133@64.27.3776.2133" timestamp="1606686178168" />
+    <state width="1842" height="632" key="GridCell.Tab.0.center" timestamp="1606686178167">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state width="1842" height="632" key="GridCell.Tab.0.center/64.27.3776.2133@64.27.3776.2133" timestamp="1606686178167" />
+    <state width="1842" height="632" key="GridCell.Tab.0.left" timestamp="1606686178167">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state width="1842" height="632" key="GridCell.Tab.0.left/64.27.3776.2133@64.27.3776.2133" timestamp="1606686178167" />
+    <state width="1842" height="632" key="GridCell.Tab.0.right" timestamp="1606686178167">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state width="1842" height="632" key="GridCell.Tab.0.right/64.27.3776.2133@64.27.3776.2133" timestamp="1606686178167" />
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606685666607">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/64.27.3776.2133@64.27.3776.2133" timestamp="1606685666607" />
+  </component>
+</project>
