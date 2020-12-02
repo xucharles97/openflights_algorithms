@@ -13,12 +13,11 @@ using std::pair;
 using std::vector;
 
 template <class Vertex>
-Graph<Vertex>::Graph(vector<Vertex> vertices, vector<Edge<Vertex>> edges)
+Graph<Vertex>::Graph(vector<Edge<Vertex>> &edges)
 {
-    adj.insert(vertices.begin(), vertices.end());
     for (auto &e : edges)
     {
-        this->insertEdge(e.source, e.destination, e.weight);
+        this->insertEdge(e);
     }
 }
 
@@ -97,12 +96,25 @@ Edge<Vertex> Graph<Vertex>::getEdge(Vertex source, Vertex destination) const
     return adj[source][destination].second;
 }
 
+template<class Vertex>
+void Graph<Vertex>::insertEdge(const Edge<Vertex> edge)
+{
+    if (adj.find(edge.source) == adj.end())
+    {
+        adj[edge.source].insert({edge.dest, edge});
+    }
+    else
+    {
+        adj[edge.source][edge.dest] = edge;
+    }
+}
+
 template <class Vertex>
 void Graph<Vertex>::insertEdge(Vertex src, Vertex dest, double weight)
 {
     if (adj.find(src) == adj.end())
     {
-        adj.insert(src, {dest, Edge<Vertex>(src, dest, weight)});
+        adj[src].insert({dest, Edge<Vertex>(src, dest, weight)});
     }
     else
     {

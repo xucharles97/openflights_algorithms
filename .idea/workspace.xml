@@ -27,16 +27,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="should work mostly idk about the makefile im having trouble w dependencies but ill work on that now that im back">
-      <change afterPath="$PROJECT_DIR$/catch/catch.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/catch/catchmain.cpp" afterDir="false" />
+    <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="modified locations/organziation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CONTRACT_cyx2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/CONTRACT_cyx2.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CONTRACT_echudov2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/CONTRACT_echudov2.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CONTRACT_madhav2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/CONTRACT_madhav2.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract_mgeimer2.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/contracts/contract_mgeimer2.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph/tests/test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/graph_tests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/Edge.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Edge.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/graph_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/graph_tests.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,26 +69,26 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Makefile.test.o">
+  <component name="RunManager" selected="Makefile.test">
     <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Graph.o" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
-      <makefile filename="$PROJECT_DIR$/Makefile" target="Graph.o" workingDirectory="" arguments="">
+    <configuration name="clean" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="clean" workingDirectory="" arguments="">
         <envs />
       </makefile>
       <method v="2" />
     </configuration>
-    <configuration name="PHONY" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
-      <makefile filename="$PROJECT_DIR$/graph/graph.mk" target="PHONY" workingDirectory="" arguments="">
+    <configuration name="graph.o" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="graph.o" workingDirectory="" arguments="">
         <envs />
       </makefile>
       <method v="2" />
     </configuration>
-    <configuration name="graph.mk" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
-      <makefile filename="$PROJECT_DIR$/graph/graph.mk" target="" workingDirectory="" arguments="">
+    <configuration name="output_msg" type="MAKEFILE_TARGET_RUN_CONFIGURATION" factoryName="Makefile" temporary="true">
+      <makefile filename="$PROJECT_DIR$/Makefile" target="output_msg" workingDirectory="" arguments="">
         <envs />
       </makefile>
       <method v="2" />
@@ -110,11 +107,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Makefile.test.o" />
-        <item itemvalue="Makefile.Graph.o" />
         <item itemvalue="Makefile.test" />
-        <item itemvalue="Makefile.graph.mk" />
-        <item itemvalue="Makefile.PHONY" />
+        <item itemvalue="Makefile.clean" />
+        <item itemvalue="Makefile.test.o" />
+        <item itemvalue="Makefile.output_msg" />
+        <item itemvalue="Makefile.graph.o" />
       </list>
     </recent_temporary>
   </component>
@@ -127,7 +124,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605656756711</updated>
       <workItem from="1605656757749" duration="607000" />
-      <workItem from="1606679569128" duration="10842000" />
+      <workItem from="1606679569128" duration="19816000" />
     </task>
     <task id="LOCAL-00001" summary="edge functionality finished&#10;&#10;implementing graph now">
       <created>1606681358182</created>
@@ -164,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606860598704</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="modified locations/organziation">
+      <created>1606862991204</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606862991204</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,32 +191,37 @@
     <MESSAGE value="fixed append to push_back i love python&#10;&#10;also added another function getAdjacencyWeighted that gets an adjacency list with weights so we don't need to worry about reaccessing" />
     <MESSAGE value="fixed small bug in edgeExists bc i forgot to compare to end iterator, supes awks" />
     <MESSAGE value="should work mostly idk about the makefile im having trouble w dependencies but ill work on that now that im back" />
-    <option name="LAST_COMMIT_MESSAGE" value="should work mostly idk about the makefile im having trouble w dependencies but ill work on that now that im back" />
+    <MESSAGE value="modified locations/organziation" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified locations/organziation" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="719" y="895" width="567" height="403" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606684584890">
+    <state x="719" y="895" width="625" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606882990313">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state x="719" y="895" width="567" height="403" key="#com.intellij.fileTypes.FileTypeChooser/64.27.3776.2133@64.27.3776.2133" timestamp="1606684584890" />
-    <state width="1842" height="632" key="GridCell.Tab.0.bottom" timestamp="1606860760688">
+    <state x="719" y="895" width="625" height="410" key="#com.intellij.fileTypes.FileTypeChooser/64.27.3776.2133@64.27.3776.2133" timestamp="1606882990313" />
+    <state x="2629" y="842" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606881604961">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.bottom/64.27.3776.2133@64.27.3776.2133" timestamp="1606860760688" />
-    <state width="1842" height="632" key="GridCell.Tab.0.center" timestamp="1606860760687">
+    <state x="2629" y="842" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/64.27.3776.2133@64.27.3776.2133" timestamp="1606881604961" />
+    <state width="1842" height="632" key="GridCell.Tab.0.bottom" timestamp="1606890673539">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.center/64.27.3776.2133@64.27.3776.2133" timestamp="1606860760687" />
-    <state width="1842" height="632" key="GridCell.Tab.0.left" timestamp="1606860760687">
+    <state width="1842" height="632" key="GridCell.Tab.0.bottom/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
+    <state width="1842" height="632" key="GridCell.Tab.0.center" timestamp="1606890673539">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.left/64.27.3776.2133@64.27.3776.2133" timestamp="1606860760687" />
-    <state width="1842" height="632" key="GridCell.Tab.0.right" timestamp="1606860760688">
+    <state width="1842" height="632" key="GridCell.Tab.0.center/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
+    <state width="1842" height="632" key="GridCell.Tab.0.left" timestamp="1606890673539">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.right/64.27.3776.2133@64.27.3776.2133" timestamp="1606860760688" />
-    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606860601362">
+    <state width="1842" height="632" key="GridCell.Tab.0.left/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
+    <state width="1842" height="632" key="GridCell.Tab.0.right" timestamp="1606890673539">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/64.27.3776.2133@64.27.3776.2133" timestamp="1606860601362" />
+    <state width="1842" height="632" key="GridCell.Tab.0.right/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606862993357">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/64.27.3776.2133@64.27.3776.2133" timestamp="1606862993357" />
   </component>
 </project>

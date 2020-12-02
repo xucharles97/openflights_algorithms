@@ -1,10 +1,16 @@
+#!/bin/bash
 EXENAME = final
 GRAPH_OBJS = graph.o
 
+SHELL := /bin/bash # Use bash syntax
+
 CXX = clang++
-CXXFLAGS = $(CS225) -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic
+CXXFLAGS = -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic
+CXXBASICFLAGS = -g -Wall
 LD = clang++
 LDFLAGS = -std=c++1y -stdlib=libc++ -lc++abi -lm
+
+ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 # Custom Clang version enforcement Makefile rule:
 ccred=$(shell echo -e "\033[0;31m")
@@ -30,16 +36,14 @@ output_msg: ; $(CLANG_VERSION_MSG)
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-readFromFile.o: main.cpp readFromFile.cpp
-	$(CXX) $(CXXFLAGS) main.cpp readFromFile.cpp
+test: test.o catchmain.o
+	$(CXX) $(LDFLAGS) -o test graph_tests.o catchmain.o
 
-test: output_msg catch/catchmain.cpp tests/graph_test.cpp graph/Edge.h graph/Graph.h
-	$(LD) catch/catchmain.cpp tests/graph_test.cpp graph/Graph.cpp $(LDFLAGS) -o test
+test.o: tests/graph_tests.cpp graph/Graph.h graph/Edge.h
+	$(CXX) $(CXXFLAGS) tests/graph_tests.cpp
 
-test.o: catch/catchmain.cpp tests/graph_test.cpp graph/Edge.h graph/Graph.h
-	$(LD) $(LDFLAGS) catch/catchmain.cpp tests/graph_test.cpp 
-
-graph.o: Graph.h
+catchmain.o: catch/catchmain.cpp catch/catch.hpp
+	$(CXX) $(CXXFLAGS) -c catch/catchmain.cpp
 
 clean:
 	-rm -f *.o $(EXENAME) test
