@@ -35,10 +35,18 @@ TEST_CASE("GRAPH CONSTRUCTOR WORKS")
     strEdges.push_back(Edge<std::string>("c", "d"));
     strEdges.push_back(Edge<std::string>("d", "b", 1.5));
     Graph<std::string> gString(strEdges);
+    std::vector<std::string> expectedOutput1 = {"d", "b", "c", "a"};
+    int i = 0;
     for (auto v : gString.getVertices()) {
-        std::cout << v << std::endl;
+        // std::cout << v << std::endl;
+        REQUIRE(expectedOutput1[i] == v);
+        i++;
     }
+    std::vector<std::string> expectedOutput2 = {"source: d dest: b weight: 1.500000", "source: b dest: c weight: 2.000000", "source: c dest: d weight: 1.000000", "source: a dest: b weight: 4.000000"};
+    i = 0;
     for (auto e : gString.getEdges()) {
-        std::cout << "source: " << e.source << " dest: " << e.dest << " weight: " << e.getWeight() << std::endl;
+        std::string actualOutput = std::string("source: ") + e.source + " dest: " + e.dest + " weight: " + std::to_string(e.getWeight());
+        REQUIRE(actualOutput == expectedOutput2[i]);
+        i++;
     }
 }

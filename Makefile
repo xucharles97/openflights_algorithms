@@ -37,10 +37,10 @@ $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
 test: test.o catchmain.o
-	$(CXX) $(LDFLAGS) -o test graph_tests.o catchmain.o
+	$(CXX) $(LDFLAGS) -o test graph_tests.o BFS_tests.o catchmain.o
 
-test.o: tests/graph_tests.cpp graph/Graph.h graph/Edge.h
-	$(CXX) $(CXXFLAGS) tests/graph_tests.cpp
+test.o: tests/graph_tests.cpp tests/BFS_tests.cpp traversals/BFS.hpp traversals/GraphTraversal.hpp graph/Graph.h graph/Edge.h
+	$(CXX) $(CXXFLAGS) tests/graph_tests.cpp tests/BFS_tests.cpp
 
 catchmain.o: catch/catchmain.cpp catch/catch.hpp
 	$(CXX) $(CXXFLAGS) -c catch/catchmain.cpp
