@@ -28,4 +28,17 @@ TEST_CASE("GRAPH CONSTRUCTOR WORKS")
     Graph<int> g(edges);
     REQUIRE(g.edgeExists(1, 2));
     REQUIRE(g.getEdgeWeight(0, 1) == 0.5);
+
+    std::vector<Edge<std::string>> strEdges;
+    strEdges.push_back(Edge<std::string>("a", "b", 4));
+    strEdges.push_back(Edge<std::string>("b", "c", 2));
+    strEdges.push_back(Edge<std::string>("c", "d"));
+    strEdges.push_back(Edge<std::string>("d", "b", 1.5));
+    Graph<std::string> gString(strEdges);
+    for (auto v : gString.getVertices()) {
+        std::cout << v << std::endl;
+    }
+    for (auto e : gString.getEdges()) {
+        std::cout << "source: " << e.source << " dest: " << e.dest << " weight: " << e.getWeight() << std::endl;
+    }
 }

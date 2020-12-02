@@ -79,7 +79,7 @@ vector<Edge<Vertex>> Graph<Vertex>::getEdges() const
         Vertex source = map.first;
         for (auto &pair : adj[source])
         {
-            edges.push_back(pair->second);
+            edges.push_back(pair.second);
         }
     }
 

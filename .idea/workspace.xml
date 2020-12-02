@@ -27,12 +27,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="modified locations/organziation">
+    <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="finished fixing makefile finally">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph/Edge.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Edge.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph/Graph.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graph/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graph/Graph.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/graph_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/graph_tests.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -124,7 +122,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605656756711</updated>
       <workItem from="1605656757749" duration="607000" />
-      <workItem from="1606679569128" duration="19816000" />
+      <workItem from="1606679569128" duration="20578000" />
     </task>
     <task id="LOCAL-00001" summary="edge functionality finished&#10;&#10;implementing graph now">
       <created>1606681358182</created>
@@ -168,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606862991204</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="finished fixing makefile finally">
+      <created>1606892806680</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1606892806681</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +197,8 @@
     <MESSAGE value="fixed small bug in edgeExists bc i forgot to compare to end iterator, supes awks" />
     <MESSAGE value="should work mostly idk about the makefile im having trouble w dependencies but ill work on that now that im back" />
     <MESSAGE value="modified locations/organziation" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified locations/organziation" />
+    <MESSAGE value="finished fixing makefile finally" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished fixing makefile finally" />
   </component>
   <component name="WindowStateProjectService">
     <state x="719" y="895" width="625" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606882990313">
@@ -219,9 +225,9 @@
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
     <state width="1842" height="632" key="GridCell.Tab.0.right/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
-    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606862993357">
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606892809118">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/64.27.3776.2133@64.27.3776.2133" timestamp="1606862993357" />
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/64.27.3776.2133@64.27.3776.2133" timestamp="1606892809118" />
   </component>
 </project>

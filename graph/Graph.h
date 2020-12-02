@@ -17,6 +17,7 @@ template <class Vertex>
 class Graph
 {
 public:
+    Graph<Vertex>() {};
     Graph<Vertex>(vector<Edge<Vertex>> &edges);
 
     vector<Vertex> getAdjacent(Vertex src) const;
