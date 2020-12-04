@@ -27,11 +27,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="finished fixing makefile finally">
+    <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="added some tests with strings">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph/Graph.h" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph/Graph.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/graph/Graph.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/graph_tests.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/tests/graph_tests.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dev_Log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Dev_Log.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +120,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605656756711</updated>
       <workItem from="1605656757749" duration="607000" />
-      <workItem from="1606679569128" duration="20578000" />
+      <workItem from="1606679569128" duration="24515000" />
     </task>
     <task id="LOCAL-00001" summary="edge functionality finished&#10;&#10;implementing graph now">
       <created>1606681358182</created>
@@ -173,7 +171,14 @@
       <option name="project" value="LOCAL" />
       <updated>1606892806681</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added some tests with strings">
+      <created>1606893538787</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1606893538787</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,36 +203,41 @@
     <MESSAGE value="should work mostly idk about the makefile im having trouble w dependencies but ill work on that now that im back" />
     <MESSAGE value="modified locations/organziation" />
     <MESSAGE value="finished fixing makefile finally" />
-    <option name="LAST_COMMIT_MESSAGE" value="finished fixing makefile finally" />
+    <MESSAGE value="added some tests with strings" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some tests with strings" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="719" y="895" width="625" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606882990313">
+    <state x="719" y="895" width="625" height="410" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1606933004705">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state x="719" y="895" width="625" height="410" key="#com.intellij.fileTypes.FileTypeChooser/64.27.3776.2133@64.27.3776.2133" timestamp="1606882990313" />
+    <state x="719" y="895" width="625" height="410" key="#com.intellij.fileTypes.FileTypeChooser/64.27.3776.2133@64.27.3776.2133" timestamp="1606933004705" />
     <state x="2629" y="842" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606881604961">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
     <state x="2629" y="842" width="524" height="509" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/64.27.3776.2133@64.27.3776.2133" timestamp="1606881604961" />
-    <state width="1842" height="632" key="GridCell.Tab.0.bottom" timestamp="1606890673539">
+    <state x="2052" y="127" width="1688" height="1933" key="DiffContextDialog" timestamp="1607104474235">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.bottom/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
-    <state width="1842" height="632" key="GridCell.Tab.0.center" timestamp="1606890673539">
+    <state x="2052" y="127" width="1688" height="1933" key="DiffContextDialog/64.27.3776.2133@64.27.3776.2133" timestamp="1607104474235" />
+    <state width="1842" height="632" key="GridCell.Tab.0.bottom" timestamp="1607101553182">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.center/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
-    <state width="1842" height="632" key="GridCell.Tab.0.left" timestamp="1606890673539">
+    <state width="1842" height="632" key="GridCell.Tab.0.bottom/64.27.3776.2133@64.27.3776.2133" timestamp="1607101553182" />
+    <state width="1842" height="632" key="GridCell.Tab.0.center" timestamp="1607101553181">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.left/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
-    <state width="1842" height="632" key="GridCell.Tab.0.right" timestamp="1606890673539">
+    <state width="1842" height="632" key="GridCell.Tab.0.center/64.27.3776.2133@64.27.3776.2133" timestamp="1607101553181" />
+    <state width="1842" height="632" key="GridCell.Tab.0.left" timestamp="1607101553181">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state width="1842" height="632" key="GridCell.Tab.0.right/64.27.3776.2133@64.27.3776.2133" timestamp="1606890673539" />
-    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606892809118">
+    <state width="1842" height="632" key="GridCell.Tab.0.left/64.27.3776.2133@64.27.3776.2133" timestamp="1607101553181" />
+    <state width="1842" height="632" key="GridCell.Tab.0.right" timestamp="1607101553181">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
-    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/64.27.3776.2133@64.27.3776.2133" timestamp="1606892809118" />
+    <state width="1842" height="632" key="GridCell.Tab.0.right/64.27.3776.2133@64.27.3776.2133" timestamp="1607101553181" />
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1606893540842">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2/64.27.3776.2133@64.27.3776.2133" timestamp="1606893540842" />
   </component>
 </project>
