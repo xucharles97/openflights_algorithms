@@ -1,0 +1,14 @@
+
+
+12-2-2020 <Matt>
+	Re-write tests written for Graph to use catch instead of print statements
+	Add GraphTraversal class
+		Abstract class with pure virtual functions to model BFS and DFS traversals
+		Conforms to iterator
+	Add BFS
+		Breadth-first-search conforming to GraphTraversal
+		Copy one unit test from Graph tests and re-write to test BFS
+	Add DFS
+		Depth-first-search conforming to GraphTraversal
+		Copy BFS unit test and switch to use BFS (will add more tests for both later)
+
