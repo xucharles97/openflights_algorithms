@@ -6,6 +6,9 @@
 #include "../graph/Graph.h"
 
 #include <iterator>
+#include <iostream>
+using std::cout;
+using std::endl;
 
 //Code here
 template <typename Vertex>
@@ -22,11 +25,14 @@ class GraphTraversal {
                 Iterator& operator++() {
                     if (!traversal->empty()) {
                         current = traversal->pop();
+
                         traversal->add(current);
+
                         if (!traversal->empty()) {
                             current = traversal->peek();
                         }
                     }
+
                     return *this;
                 }
 
