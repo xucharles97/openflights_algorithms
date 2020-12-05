@@ -21,3 +21,15 @@
 * Add DFS
 	* Depth-first-search conforming to GraphTraversal
 	* Copy BFS unit test and switch to use BFS (will add more tests for both later)
+
+# 12-5-2020
+## Matt
+* Add new tests for simple tree graph and cyclic graph for BFS & DFS
+* Fix BFS
+	* Now returns correct first value
+	* Also does not repeat values
+* Fix DFS
+	* Now returns correct first value
+	* Also does not repeat values
+* Fix DFS Basic Test
+	* Realized initial DFS test was using BFS, so replaced to use DFS
