@@ -15,7 +15,9 @@ template <typename Vertex>
 class BFS: public GraphTraversal<Vertex> {
     public:
         BFS(Graph<Vertex> graph, Vertex root): graph(graph), root(root) {
+			queue.push(root);
             this->add(root);
+			visitedmap.insert(make_pair("a", true));
         }
 
         typename GraphTraversal<Vertex>::Iterator begin() {

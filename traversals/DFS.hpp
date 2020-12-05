@@ -5,10 +5,8 @@
 
 #include "GraphTraversal.hpp"
 
-#pragma once
-
 #include <iterator>
-#include <queue>
+#include <stack>
 #include <unordered_map>
 
 template <typename Vertex>
@@ -16,6 +14,8 @@ class DFS: public GraphTraversal<Vertex> {
     public:
         DFS(Graph<Vertex> graph, Vertex root): graph(graph), root(root) {
             this->add(root);
+			stack.push(root);
+			visitedmap.insert(make_pair("a", true));
         }
 
         typename GraphTraversal<Vertex>::Iterator begin() {
@@ -31,7 +31,7 @@ class DFS: public GraphTraversal<Vertex> {
 
             for (Vertex adjacentVertex : adjacent) {
                 if (visitedmap.find(adjacentVertex) == visitedmap.end()) {
-                    stack.push_back(adjacentVertex);
+                    stack.push(adjacentVertex);
                     visitedmap.insert(make_pair(adjacentVertex, true));
                 }
             }
