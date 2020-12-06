@@ -10,8 +10,7 @@
 #include <iostream>
 #include <vector>
 
-TEST_CASE("EDGES WORK WITH INT")
-{
+TEST_CASE("EDGES WORK WITH INT") {
     Edge<int> e1(0, 1, 0.5);
     Edge<int> e2(0, 1, 3);
     REQUIRE(e1.getWeight() == 0.5);
@@ -19,8 +18,7 @@ TEST_CASE("EDGES WORK WITH INT")
     REQUIRE(e1 < e2);
 }
 
-TEST_CASE("GRAPH CONSTRUCTOR WORKS")
-{
+TEST_CASE("GRAPH CONSTRUCTOR WORKS") {
     std::vector<Edge<int>> edges;
     edges.push_back(Edge<int>(0, 1, 0.5));
     edges.push_back(Edge<int>(1, 2));
@@ -42,10 +40,13 @@ TEST_CASE("GRAPH CONSTRUCTOR WORKS")
         REQUIRE(expectedOutput1[i] == v);
         i++;
     }
-    std::vector<std::string> expectedOutput2 = {"source: d dest: b weight: 1.500000", "source: b dest: c weight: 2.000000", "source: c dest: d weight: 1.000000", "source: a dest: b weight: 4.000000"};
+    std::vector<std::string> expectedOutput2 = {
+        "source: d dest: b weight: 1.500000", "source: b dest: c weight: 2.000000",
+        "source: c dest: d weight: 1.000000", "source: a dest: b weight: 4.000000"};
     i = 0;
     for (auto e : gString.getEdges()) {
-        std::string actualOutput = std::string("source: ") + e.source + " dest: " + e.dest + " weight: " + std::to_string(e.getWeight());
+        std::string actualOutput = std::string("source: ") + e.source + " dest: " + e.dest +
+                                   " weight: " + std::to_string(e.getWeight());
         REQUIRE(actualOutput == expectedOutput2[i]);
         i++;
     }
