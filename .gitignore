@@ -1,0 +1,8 @@
+# Object/Linking Files
+*.o
+*.d
+.obj
+
+# Misc
+.idea/
+.vscode/
