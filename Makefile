@@ -60,8 +60,8 @@ $(EXENAME): output_msg $(OBJS)
 
 # Test Targets
 
-test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o
-	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o $(LDFLAGS) -o test
+test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o
+	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o $(LDFLAGS) -o test
 
 graph_tests.o: tests/graph_tests.cpp $(GRAPH_FILES)
 	$(CXX) $(CXXFLAGS) -o graph_tests.o tests/graph_tests.cpp
