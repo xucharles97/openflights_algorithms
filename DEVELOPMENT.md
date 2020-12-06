@@ -33,3 +33,16 @@
 	* Also does not repeat values
 * Fix DFS Basic Test
 	* Realized initial DFS test was using BFS, so replaced to use DFS
+
+# 12-6-2020
+## Madhav
+* Restructured Makefile substantially
+	* Add warnings
+	* Improve modularity
+	* Add dependencies
+* Fixed .gitignore issues
+* Set up algorithms file structure
+* Created Floyd Warshall functions
+	* Shortest distance from each vertex to every vertex
+	* Shortest path from each vertex to every vertex
+	* Shortest path from any 1 vertex to any other vertex given output from above function
