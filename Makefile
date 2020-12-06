@@ -43,7 +43,9 @@ endif
 # ALL UNDERLYING GRAPH FILES
 GRAPH_FILES = graph/Graph.h graph/Edge.h graph/Graph.hpp
 # ALL UNDERLYING TRAVERSAL FILES
-TRAVERSAL_FILES = traversals/BFS.hpp traversals/DFS.hpp traversals/GraphTraversal.hpp 
+TRAVERSAL_FILES = traversals/BFS.hpp traversals/DFS.hpp traversals/GraphTraversal.hpp
+# ALL UNDERLYING ALGORITHM FILES
+ALGORITHM_FILES = algorithms/FloydWarshall.hpp algorithms/Dijkstra.hpp
 
 output_msg: ; $(CLANG_VERSION_MSG)
 
@@ -66,6 +68,9 @@ graph_tests.o: tests/graph_tests.cpp $(GRAPH_FILES)
 
 bfs_dfs_tests.o: tests/BFS_and_DFS_tests.cpp $(GRAPH_FILES) $(TRAVERSAL_FILES)
 	$(CXX) $(CXXFLAGS) -o bfs_dfs_tests.o tests/BFS_and_DFS_tests.cpp
+
+floyd_warshall_tests.o: tests/Floyd_Warshall_Tests.cpp $(GRAPH_FILES) $(ALGORITHM_FILES)
+	$(CXX) $(CXXFLAGS) -o floyd_warshall_tests.o tests/Floyd_Warshall_Tests.cpp
 
 catchmain.o: catch/catchmain.cpp catch/catch.hpp
 	$(CXX) $(CXXFLAGS) catch/catchmain.cpp
