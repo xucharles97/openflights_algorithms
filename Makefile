@@ -1,13 +1,24 @@
 #!/bin/bash
-EXENAME = final
-GRAPH_OBJS = graph.o
+EXENAME = main
 
 SHELL := /bin/bash # Use bash syntax
 
+# Compiler/linker config and object/depfile directory:
 CXX = clang++
-CXXFLAGS = -std=c++1y -stdlib=libc++ -c -g -O0 -Wall -Wextra -pedantic
-CXXBASICFLAGS = -g -Wall
 LD = clang++
+
+# -MMD and -MP asks clang++ to generate a .d file listing the headers used in the source code for use in the Make process.
+#   -MMD: "Write a depfile containing user headers"
+#   -MP : "Create phony target for each dependency (other than main file)"
+#   (https://clang.llvm.org/docs/ClangCommandLineReference.html)
+DEPFILE_FLAGS = -MMD -MP
+
+# Provide lots of helpful warning/errors:
+WARNINGS = -pedantic -Wall -Werror -Wfatal-errors -Wextra -Wno-unused-parameter -Wno-unused-variable -Wno-unused-function
+
+# Flags for compile:
+CXXFLAGS = -std=c++1y -stdlib=libc++ -O0 $(WARNINGS) $(DEPFILE_FLAGS) -g -c
+# Flags for linking:
 LDFLAGS = -std=c++1y -stdlib=libc++ -lc++abi -lm
 
 ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
@@ -17,33 +28,49 @@ ccred=$(shell echo -e "\033[0;31m")
 ccyellow=$(shell echo -e "\033[0;33m")
 ccend=$(shell echo -e "\033[0m")
 
-IS_EWS=$(shell hostname | grep "ews.illinois.edu")
+IS_EWS=$(shell hostname | grep "ews.illinois.edu") 
 IS_CORRECT_CLANG=$(shell clang -v 2>&1 | grep "version 6")
 ifneq ($(strip $(IS_EWS)),)
 ifeq ($(strip $(IS_CORRECT_CLANG)),)
 CLANG_VERSION_MSG = $(error $(ccred) On EWS, please run 'module load llvm/6.0.1' first when running CS225 assignments. $(ccend))
 endif
 else
+ifneq ($(strip $(SKIP_EWS_CHECK)),True)
 CLANG_VERSION_MSG = $(warning $(ccyellow) Looks like you are not on EWS. Be sure to test on EWS before the deadline. $(ccend))
 endif
+endif
+
+# ALL UNDERLYING GRAPH FILES
+GRAPH_FILES = graph/Graph.h graph/Edge.h graph/Graph.hpp
+# ALL UNDERLYING TRAVERSAL FILES
+TRAVERSAL_FILES = traversals/BFS.hpp traversals/DFS.hpp traversals/GraphTraversal.hpp 
+
+output_msg: ; $(CLANG_VERSION_MSG)
 
 .PHONY: all test clean output_msg
 
-all : $(EXENAME)
+# Main Targets
 
-output_msg: ; $(CLANG_VERSION_MSG)
+all : $(EXENAME)
 
 $(EXENAME): output_msg $(OBJS)
 	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
 
-test: test.o catchmain.o
-	$(CXX) $(LDFLAGS) -o test graph_tests.o BFS_and_DFS_tests.o catchmain.o
+# Test Targets
 
-test.o: tests/graph_tests.cpp tests/BFS_and_DFS_tests.cpp traversals/BFS.hpp traversals/DFS.hpp traversals/GraphTraversal.hpp graph/Graph.h graph/Edge.h
-	$(CXX) $(CXXFLAGS) tests/graph_tests.cpp tests/BFS_and_DFS_tests.cpp
+test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o
+	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o $(LDFLAGS) -o test
+
+graph_tests.o: tests/graph_tests.cpp $(GRAPH_FILES)
+	$(CXX) $(CXXFLAGS) -o graph_tests.o tests/graph_tests.cpp
+
+bfs_dfs_tests.o: tests/BFS_and_DFS_tests.cpp $(GRAPH_FILES) $(TRAVERSAL_FILES)
+	$(CXX) $(CXXFLAGS) -o bfs_dfs_tests.o tests/BFS_and_DFS_tests.cpp
 
 catchmain.o: catch/catchmain.cpp catch/catch.hpp
-	$(CXX) $(CXXFLAGS) -c catch/catchmain.cpp
+	$(CXX) $(CXXFLAGS) catch/catchmain.cpp
+
+# Clean Targets
 
 clean:
-	-rm -f *.o $(EXENAME) test
+	-rm -f *.o *.d $(EXENAME) test

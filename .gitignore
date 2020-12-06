@@ -1,3 +1,7 @@
+# Executables
+main
+test
+
 # Object/Linking Files
 *.o
 *.d
