@@ -29,11 +29,6 @@
   <component name="ChangeListManager">
     <list default="true" id="5696dffb-ff1a-4f72-9365-ed0ad393c3a4" name="Default Changelist" comment="modified dev log a bit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BFS_and_DFS_tests.o" beforeDir="false" afterPath="$PROJECT_DIR$/BFS_and_DFS_tests.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BFS_tests.o" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/catchmain.o" beforeDir="false" afterPath="$PROJECT_DIR$/catchmain.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graph_tests.o" beforeDir="false" afterPath="$PROJECT_DIR$/graph_tests.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test" beforeDir="false" afterPath="$PROJECT_DIR$/test" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,7 +119,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605656756711</updated>
       <workItem from="1605656757749" duration="607000" />
-      <workItem from="1606679569128" duration="27032000" />
+      <workItem from="1606679569128" duration="27775000" />
     </task>
     <task id="LOCAL-00001" summary="edge functionality finished&#10;&#10;implementing graph now">
       <created>1606681358182</created>
@@ -189,7 +184,14 @@
       <option name="project" value="LOCAL" />
       <updated>1607106880297</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="modified dev log a bit">
+      <created>1607194095192</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1607194095192</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +249,10 @@
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
     <state width="1842" height="632" key="GridCell.Tab.0.right/64.27.3776.2133@64.27.3776.2133" timestamp="1607107690320" />
+    <state x="2527" y="856" width="728" height="482" key="MultipleFileMergeDialog" timestamp="1607194110145">
+      <screen x="64" y="27" width="3776" height="2133" />
+    </state>
+    <state x="2527" y="856" width="728" height="482" key="MultipleFileMergeDialog/64.27.3776.2133@64.27.3776.2133" timestamp="1607194110145" />
     <state x="603" y="829" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1607106883894">
       <screen x="64" y="27" width="3776" height="2133" />
     </state>
