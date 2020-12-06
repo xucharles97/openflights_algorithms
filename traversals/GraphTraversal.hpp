@@ -1,12 +1,11 @@
 #ifndef GRAPH_TRAVERSAL_HPP
 #define GRAPH_TRAVERSAL_HPP
 
-#pragma once
-
 #include "../graph/Graph.h"
 
 #include <iostream>
 #include <iterator>
+
 using std::cout;
 using std::endl;
 

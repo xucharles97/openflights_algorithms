@@ -1,8 +1,6 @@
 #ifndef DFS_HPP
 #define DFS_HPP
 
-#pragma once
-
 #include "GraphTraversal.hpp"
 
 #include <iterator>
