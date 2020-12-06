@@ -4,21 +4,19 @@
 
 #pragma once
 
-#include <vector>
-#include <unordered_map>
 #include "Edge.h"
+#include <unordered_map>
 #include <utility>
+#include <vector>
 
 using std::pair;
 using std::unordered_map;
 using std::vector;
 
-template <class Vertex>
-class Graph
-{
-public:
-    Graph<Vertex>() {};
-    Graph<Vertex>(vector<Edge<Vertex>> &edges);
+template <class Vertex> class Graph {
+  public:
+    Graph<Vertex>(){};
+    Graph<Vertex>(vector<Edge<Vertex>>& edges);
 
     vector<Vertex> getAdjacent(Vertex src) const;
     vector<pair<Vertex, double>> getAdjacentWeighted(Vertex src) const;
@@ -31,7 +29,7 @@ public:
     Edge<Vertex> removeEdge(Vertex src, Vertex dest);
     bool edgeExists(Vertex v1, Vertex v2) const;
 
-private:
+  private:
     mutable unordered_map<Vertex, unordered_map<Vertex, Edge<Vertex>>> adj;
 };
 
