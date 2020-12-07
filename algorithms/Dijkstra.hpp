@@ -4,7 +4,7 @@
 #include "../graph/Graph.h"
 #include <vector>
 #include <unordered_map>
-
+#include <utility>
 
 namespace Dijkstra {
     
@@ -31,7 +31,8 @@ namespace Dijkstra {
      * @return unordered_map where the key is the Vertex and the value is the corresponding distance from the source
      */
     template <class Vertex>    
-    std::unordered_map<Vertex, double> getDistanceDataForVertex(Vertex source) {
-        return std::unordered_map<Vertex,double>();
+    std::unordered_map<Vertex, std::pair<double, Vertex>> getDistanceDataForVertex(Vertex source) {
+        
+        return std::unordered_map<Vertex, std::pair<double, Vertex>>();
     }
 }
