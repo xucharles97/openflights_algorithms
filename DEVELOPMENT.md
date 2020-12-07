@@ -55,3 +55,5 @@
 	* Shortest distance between two points
 	* Shortest path between two points
 	* Shortest distance to every other point in the graph from a given point
+* Filled out Dijkstra.hpp function
+	* Filled out function for shortest distance to every other point in graph from a given point
