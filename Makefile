@@ -72,6 +72,9 @@ bfs_dfs_tests.o: tests/BFS_and_DFS_tests.cpp $(GRAPH_FILES) $(TRAVERSAL_FILES)
 floyd_warshall_tests.o: tests/Floyd_Warshall_Tests.cpp $(GRAPH_FILES) $(ALGORITHM_FILES)
 	$(CXX) $(CXXFLAGS) -o floyd_warshall_tests.o tests/Floyd_Warshall_Tests.cpp
 
+dijkstra_tests.o: tests/Dijkstra_Tests.cpp $(GRAPH_FILES) $(ALGORITHM_FILES)
+	$(CXX) $(CXXFLAGS) -o dijkstra_tests.o tests/Dijkstra_Tests.cpp
+
 catchmain.o: catch/catchmain.cpp catch/catch.hpp
 	$(CXX) $(CXXFLAGS) catch/catchmain.cpp
 
