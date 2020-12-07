@@ -46,3 +46,12 @@
 	* Shortest distance from each vertex to every vertex
 	* Shortest path from each vertex to every vertex
 	* Shortest path from any 1 vertex to any other vertex given output from above function
+	
+# 12-7-2020
+## Charles
+* Updated Makefile to compile Dijkstra files
+* Created Dijkstra test file
+* Added skeleton for functions in Dijkstra.hpp 
+	* Shortest distance between two points
+	* Shortest path between two points
+	* Shortest distance to every other point in the graph from a given point
