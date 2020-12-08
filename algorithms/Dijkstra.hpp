@@ -6,6 +6,7 @@
 #include <unordered_map>
 #include <utility>
 #include <iostream>
+#include <limits>
 
 namespace Dijkstra {
 
@@ -21,26 +22,23 @@ namespace Dijkstra {
             //if the source isn't in the graph, return empty map
             return distances;
         }
-        // std::cout << "Line " << __LINE__ << std::endl;
         std::vector<Vertex> vertices = g_.getVertices();
         std::unordered_map<Vertex, double> not_visited; //key is Vertex, value is current distance to source (to make it easier to check for next node to visit)
         for (Vertex v : vertices) {
             //set up distances
-            not_visited.insert(std::make_pair(v, -1.0));
-            distances.insert(std::make_pair(v , std::make_pair(-1.0, source)));
+            not_visited.insert(std::make_pair(v, std::numeric_limits<double>::max()));
+            distances.insert(std::make_pair(v , std::make_pair(std::numeric_limits<double>::max(), source)));
         }
-        // std::cout << "Line " << __LINE__ << std::endl;
 
         if (distances.find(source) == distances.end()) {
             return std::unordered_map<Vertex, std::pair<double, Vertex>>();
         }
-        // std::cout << "Line " << __LINE__ << std::endl;
         Vertex current = source;
         distances[current].first = 0.0;
         while (not_visited.size() != 0) {
             //Update weights for nodes adjacent to current
             //Find unvisited node with next smallest distance, set to current
-            // std::cout << "Line " << __LINE__ << std::endl;
+
             
             // for (std::pair<Vertex, double> n : not_visited) {
             //     std::cout << n.first;
@@ -59,14 +57,14 @@ namespace Dijkstra {
                 }
             }
 
-            double nextShortest;
+            double nextShortest = -1.0;
             Vertex nextVertex = current;
 
             for (std::pair<Vertex, double> v : not_visited) {
                 if (not_visited.size() == 1) {
                     nextVertex = v.first;
                 } else {
-                    if (v.second < nextShortest) {
+                    if (nextShortest < 0 || v.second < nextShortest) {
                         nextVertex = v.first;
                         nextShortest = v.second;
                     }
