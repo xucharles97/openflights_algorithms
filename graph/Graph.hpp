@@ -73,7 +73,7 @@ Edge<Vertex> Graph<Vertex>::getEdge(Vertex source, Vertex destination) const {
     if (edgeExists(source, destination)) {
         return Edge<Vertex>();
     }
-    return adj[source][destination].second;
+    return adj[source][destination];
 }
 
 template <class Vertex> void Graph<Vertex>::insertEdge(const Edge<Vertex> edge) {
