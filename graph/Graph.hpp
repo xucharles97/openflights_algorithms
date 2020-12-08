@@ -81,7 +81,7 @@ template <class Vertex> vector<Edge<Vertex>> Graph<Vertex>::getEdges() const {
 
 template <class Vertex>
 Edge<Vertex> Graph<Vertex>::getEdge(Vertex source, Vertex destination) const {
-    if (edgeExists(source, destination)) {
+    if (!edgeExists(source, destination)) {
         return Edge<Vertex>();
     }
     return adj[source][destination];
