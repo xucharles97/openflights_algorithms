@@ -51,9 +51,10 @@
 ## Charles
 * Updated Makefile to compile Dijkstra files
 * Created Dijkstra test file
-* Added skeleton for functions in Dijkstra.hpp 
+* Added and filled out functions for Dijkstra algorithm
 	* Shortest distance between two points
 	* Shortest path between two points
 	* Shortest distance to every other point in the graph from a given point
-* Filled out Dijkstra.hpp function
-	* Filled out function for shortest distance to every other point in graph from a given point
+* Made various bug fixes to Graph.hpp
+	* Fixed syntax error in getEdge()
+	* Updated getVertices() to include vertices that are only 
