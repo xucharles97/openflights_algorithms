@@ -26,8 +26,8 @@ namespace Dijkstra {
         std::unordered_map<Vertex, double> not_visited; //key is Vertex, value is current distance to source (to make it easier to check for next node to visit)
         for (Vertex v : vertices) {
             //set up distances
-            not_visited.insert(std::make_pair(v, std::numeric_limits<double>::max()));
-            distances.insert(std::make_pair(v , std::make_pair(std::numeric_limits<double>::max(), source)));
+            not_visited.insert(std::make_pair(v, -1.0));
+            distances.insert(std::make_pair(v , std::make_pair(-1.0, source)));
         }
 
         if (distances.find(source) == distances.end()) {
@@ -49,7 +49,7 @@ namespace Dijkstra {
 
             for (std::pair<Vertex, double> adj : adjacent) {
                 Edge<Vertex> currentEdge = g_.getEdge(current, adj.first);
-                if ((distances[adj.first].first == std::numeric_limits<double>::max() || distances[adj.first].first > currentDistance + adj.second) && not_visited.find(adj.first) != not_visited.end()) {
+                if ((distances[adj.first].first == -1.0 || distances[adj.first].first > currentDistance + adj.second) && not_visited.find(adj.first) != not_visited.end()) {
                     //if current distance is -1 (hasn't been visited yet) or is longer than the path from current vector, update the distance
                     not_visited[adj.first] = currentDistance + adj.second;
                     distances[adj.first].first = currentDistance + adj.second;
@@ -58,14 +58,14 @@ namespace Dijkstra {
             }
             
 
-            double nextShortest = currentDistance;
+            double nextShortest = -1.0;
             Vertex nextVertex = current;
 
             for (std::pair<Vertex, double> v : not_visited) {
                 if (not_visited.size() == 1) {
                     nextVertex = v.first;
                 } else {
-                    if (nextShortest == currentDistance || v.second < nextShortest) {
+                    if (nextShortest == -1.0 || v.second < nextShortest) {
                         nextVertex = v.first;
                         nextShortest = v.second;
                     }
@@ -100,14 +100,19 @@ namespace Dijkstra {
     template <class Vertex, class Edge>    
     std::vector<Edge> getPathBetweenPoints(Graph<Vertex>& g_, Vertex source, Vertex sink) {
         std::unordered_map<Vertex, std::pair<double, Vertex>> distances = getDistanceDataForVertex(g_, source);
-        std::pair<double, Vertex> data = distances.find(sink);
-        if (data == distances.end()) {
+        if (distances.find(sink) == distances.end()) {
             return std::vector<Edge>();
         }
+        std::pair<double, Vertex> data = distances[sink];
+
         std::vector<Edge> path;
         Vertex current = sink;
         while (current != source) {
-            data = distances.find(current);
+            data = distances[current];
+            std::cout << "inserting edge " << data.second << " to " << current << std::endl;
+            if (!g_.edgeExists(data.second, current)) {
+                return std::vector<Edge>();
+            }
             path.push_back(g_.getEdge(data.second, current));
             current = data.second;
         }
