@@ -24,11 +24,24 @@ namespace Dijkstra {
 
     /**
      * Uses Dijkstra's algorithm to get the shortest path between two points
-     * @return shortest path between two points as a vector of Vertex objects
+     * @return shortest path between two points as a vector of Vertex objects. Returns empty vector if one of the inputs is invalid
      */
     template <class Vertex>    
-    std::vector<Vertex> getPathBetweenPoints(Graph<Vertex>& g_, Vertex source, Vertex sink) {
-        return std::vector<Vertex>();
+    std::vector<Edge> getPathBetweenPoints(Graph<Vertex>& g_, Vertex source, Vertex sink) {
+        std::unordered_map<Vertex, std::pair<double, Vertex>> distances = getDistanceDataForVertex(g_, source);
+        std::pair<double, Vertex> data = distances.find(sink);
+        if (data == distances.end()) {
+            return std::vector<Edge>();
+        }
+        std::vector<Edge> path;
+        Vertex current = sink;
+        while (current != source) {
+            data = distances.find(current);
+            path.push_back(g_.getEdge(data.second, current));
+            current = data.second;
+        }
+        std::reverse(path.begin(), path.end());
+        return path;
     }
 
     /**
