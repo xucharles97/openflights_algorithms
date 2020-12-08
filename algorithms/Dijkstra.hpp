@@ -10,11 +10,16 @@ namespace Dijkstra {
     
     /**
      * Uses Dijkstra's algorithm to get the distance of the shortest path between two points
-     * @return shortest distance between two points as a double
+     * @return shortest distance between two points as a double. Returns -1.0 if one of the inputs is invalid
      */
     template <class Vertex>    
     double getDistanceBetweenPoints(Graph<Vertex>& g_, Vertex source, Vertex sink) {
-        return -1.0;
+        std::unordered_map<Vertex, std::pair<double, Vertex>> distances = getDistanceDataForVertex(g_, source);
+        std::pair<double, Vertex> data = distances.find(sink);
+        if (data == distances.end()) {
+            return -1.0;
+        }
+        return data.first;
     }
 
     /**
