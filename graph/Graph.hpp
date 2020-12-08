@@ -7,7 +7,8 @@
 #include <unordered_map>
 #include <utility>
 #include <vector>
-
+#include <unordered_set>
+#include <iostream>
 using std::make_pair;
 using std::pair;
 using std::vector;
@@ -46,9 +47,19 @@ vector<pair<Vertex, double>> Graph<Vertex>::getAdjacentWeighted(Vertex src) cons
 }
 
 template <class Vertex> vector<Vertex> Graph<Vertex>::getVertices() const {
+    std::unordered_set<Vertex> included_vertices;
     vector<Vertex> vertices;
-    for (auto& pair : adj) {
-        vertices.push_back(pair.first);
+    vector<Edge<Vertex>> edges = getEdges();
+    for (Edge<Vertex> edge: edges) {
+        if (included_vertices.find(edge.source) == included_vertices.end()) {
+            vertices.push_back(edge.source);
+            included_vertices.insert(edge.source);
+
+        }
+        if (included_vertices.find(edge.dest) == included_vertices.end()) {
+            vertices.push_back(edge.dest);
+            included_vertices.insert(edge.dest);
+        }
     }
     return vertices;
 }
