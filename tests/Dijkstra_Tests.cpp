@@ -130,9 +130,7 @@ TEST_CASE("Dijkstra get path for unweighted single edge graph", "[Dijkstra][Path
 
 }
 
-
-
-TEST_CASE("Dijkstra get path for unweighted complex graph", "[Dijkstra][Distance]") {
+TEST_CASE("Dijkstra get path for unweighted complex graph", "[Dijkstra][Path]") {
     std::vector<Edge<std::string>> edges;
 
     edges.push_back(Edge<std::string>("a", "b"));
@@ -206,7 +204,7 @@ TEST_CASE("Dijkstra get path for weighted single edge graph", "[Dijkstra][Path]"
 
 }
 
-TEST_CASE("Dijkstra get path for weighted complex graph", "[Dijkstra][Distance]") {
+TEST_CASE("Dijkstra get path for weighted complex graph", "[Dijkstra][Path]") {
     std::vector<Edge<std::string>> edges;
 
     edges.push_back(Edge<std::string>("a", "b", 0.3));
@@ -272,5 +270,109 @@ TEST_CASE("Dijkstra get path for weighted complex graph", "[Dijkstra][Distance]"
     REQUIRE((*iter).source == "c");
     REQUIRE((*iter).dest == "d");
     REQUIRE((*iter).getWeight() == 2.4);
+
+}
+
+TEST_CASE("Dijkstra get general data weighted complex graph", "[Dijkstra][Data]") {
+    std::vector<Edge<std::string>> edges;
+
+    edges.push_back(Edge<std::string>("a", "b", 0.3));
+    edges.push_back(Edge<std::string>("a", "c", 1.3));
+    edges.push_back(Edge<std::string>("a", "d", 2.4));
+    edges.push_back(Edge<std::string>("a", "e", 5.9));
+
+
+    Graph<std::string> graph(edges);
+    graph.insertEdge("e", "f", 10.1);
+
+
+    std::unordered_map<std::string, std::pair<double, std::string>> data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "a");
+
+    REQUIRE(data.size() == 6);
+
+    REQUIRE(data["a"].first == 0.0);
+    REQUIRE(data["a"].second == "a");
+
+    REQUIRE(data["b"].first == 0.3);
+    REQUIRE(data["b"].second == "a");
+
+    REQUIRE(data["c"].first == 1.3);
+    REQUIRE(data["c"].second == "a");
+
+    REQUIRE(data["d"].first == 2.4);
+    REQUIRE(data["d"].second == "a");
+
+    REQUIRE(data["e"].first == 5.9);
+    REQUIRE(data["e"].second == "a");
+
+    REQUIRE(data["f"].first == 16.0);
+    REQUIRE(data["f"].second == "e");
+
+    data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "f");
+    REQUIRE(data.size() == 6);
+
+    REQUIRE(data["f"].first == 0.0);
+    REQUIRE(data["f"].second == "f");
+
+    REQUIRE(data["a"].first == -1.0);
+    REQUIRE(data["a"].second == "");
+
+    REQUIRE(data["b"].first == -1.0);
+    REQUIRE(data["b"].second == "");
+
+    REQUIRE(data["c"].first == -1.0);
+    REQUIRE(data["c"].second == "");
+
+    REQUIRE(data["d"].first == -1.0);
+    REQUIRE(data["d"].second == "");
+
+    REQUIRE(data["e"].first == -1.0);
+    REQUIRE(data["e"].second == "");
+
+    graph.insertEdge("f", "e", 1.1);
+
+    data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "f");
+    REQUIRE(data.size() == 6);
+
+    REQUIRE(data["f"].first == 0.0);
+    REQUIRE(data["f"].second == "f");
+
+    REQUIRE(data["a"].first == -1.0);
+    REQUIRE(data["a"].second == "");
+
+    REQUIRE(data["b"].first == -1.0);
+    REQUIRE(data["b"].second == "");
+
+    REQUIRE(data["c"].first == -1.0);
+    REQUIRE(data["c"].second == "");
+
+    REQUIRE(data["d"].first == -1.0);
+    REQUIRE(data["d"].second == "");
+
+    REQUIRE(data["e"].first == 1.1);
+    REQUIRE(data["e"].second == "f");
+
+    graph.insertEdge("e", "a", 0.9);
+
+    data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "f");
+    REQUIRE(data.size() == 6);
+
+    REQUIRE(data["f"].first == 0.0);
+    REQUIRE(data["f"].second == "f");
+
+    REQUIRE(data["a"].first == 2.0);
+    REQUIRE(data["a"].second == "e");
+
+    REQUIRE(data["b"].first == 2.3);
+    REQUIRE(data["b"].second == "a");
+
+    REQUIRE(data["c"].first == 3.3);
+    REQUIRE(data["c"].second == "a");
+
+    REQUIRE(data["d"].first == 4.4);
+    REQUIRE(data["d"].second == "a");
+
+    REQUIRE(data["e"].first == 1.1);
+    REQUIRE(data["e"].second == "f");
 
 }
