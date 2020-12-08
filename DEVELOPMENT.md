@@ -58,3 +58,10 @@
 * Made various bug fixes to Graph.hpp
 	* Fixed syntax error in getEdge()
 	* Updated getVertices() to include vertices that are only 
+	
+# 12-8-2020
+## Charles
+* Added tests to Dijkstra test file
+	* Tests to check correctness of distance between points on a non-diverging graph
+	* Tests to check correctness of distance between points on graph with diverging paths
+* Fixed infinite loop bugs in Dijkstra functions
