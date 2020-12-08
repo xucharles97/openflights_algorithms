@@ -27,7 +27,7 @@ namespace Dijkstra {
         for (Vertex v : vertices) {
             //set up distances
             not_visited.insert(std::make_pair(v, -1.0));
-            distances.insert(std::make_pair(v , std::make_pair(-1.0, source)));
+            distances.insert(std::make_pair(v , std::make_pair(-1.0, Edge<Vertex>().source)));
         }
 
         if (distances.find(source) == distances.end()) {
@@ -37,6 +37,8 @@ namespace Dijkstra {
         // std::cout << "Getting Data for Source " << source << std::endl;
         Vertex current = source;
         distances[current].first = 0.0;
+        distances[current].second = source;
+
         while (not_visited.size() != 0) {
             //Update weights for nodes adjacent to current
             //Find unvisited node with next smallest distance, set to current
@@ -53,7 +55,11 @@ namespace Dijkstra {
             for (std::pair<Vertex, double> adj : adjacent) {
                 // std::cout << "Adjacent vertex " << adj.first << " with edge weight " << adj.second << std::endl;
                 // std::cout << "Current adjacent distance to source: " << distances[adj.first].first << " with previous vertex " << distances[adj.first].second << std::endl;
+                
                 Edge<Vertex> currentEdge = g_.getEdge(current, adj.first);
+                if (currentEdge.source != current) {
+                    continue;
+                }
                 // std::cout << "Current edge from getEdge: " << currentEdge.source << " to " << currentEdge.dest << " with edge weight " << currentEdge.getWeight() << std::endl;
                 if ((distances[adj.first].first == -1.0 || distances[adj.first].first > currentDistance + adj.second) && not_visited.find(adj.first) != not_visited.end()) {
                     //if current distance is -1 (hasn't been visited yet) or is longer than the path from current vector, update the distance
@@ -67,13 +73,19 @@ namespace Dijkstra {
 
             double nextShortest = -1.0;
             Vertex nextVertex = current;
+            not_visited.erase(current);
+            if (not_visited.empty()) {
+                break;
+            }
             // std::cout << not_visited.size() << " remaining nodes to visit." << std::endl;
             for (std::pair<Vertex, double> v : not_visited) {
                 // std::cout << "Checking vertex " << v.first << " with distance " << v.second << ". nextShortest " << nextShortest << std::endl;
                 if (not_visited.size() == 1) {
-                    nextVertex = v.first;
+                    if (v.second != -1.0) {
+                        nextVertex = v.first;
+                    }
                 } else {
-                    if (nextShortest == -1.0 || (nextShortest != -1.0 && v.second != -1.0 && v.second < nextShortest)) {
+                    if ((nextShortest == -1.0 && v.second != -1.0) || (nextShortest != -1.0 && v.second != -1.0 && v.second < nextShortest)) {
                         nextVertex = v.first;
                         nextShortest = v.second;
                         // std::cout << "Setting nextVertex to " << nextVertex << " and nextShortest to " << nextShortest << std::endl;
@@ -81,8 +93,11 @@ namespace Dijkstra {
                 }
                 
             }
+            //if no remaining vertices have a path to the source, break
+            if (nextVertex == current) {
+                break;
+            }
 
-            not_visited.erase(current);
             current = nextVertex;
 
         }
