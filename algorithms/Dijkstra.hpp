@@ -49,22 +49,23 @@ namespace Dijkstra {
 
             for (std::pair<Vertex, double> adj : adjacent) {
                 Edge<Vertex> currentEdge = g_.getEdge(current, adj.first);
-                if ((distances[adj.first].first == -1.0 || distances[adj.first].first > currentDistance + currentEdge.getWeight()) && not_visited.find(adj.first) != not_visited.end()) {
+                if ((distances[adj.first].first == std::numeric_limits<double>::max() || distances[adj.first].first > currentDistance + adj.second) && not_visited.find(adj.first) != not_visited.end()) {
                     //if current distance is -1 (hasn't been visited yet) or is longer than the path from current vector, update the distance
-                    not_visited[adj.first] = currentDistance + currentEdge.getWeight();
-                    distances[adj.first].first = currentDistance + currentEdge.getWeight();
+                    not_visited[adj.first] = currentDistance + adj.second;
+                    distances[adj.first].first = currentDistance + adj.second;
                     distances[adj.first].second = current;
                 }
             }
+            
 
-            double nextShortest = -1.0;
+            double nextShortest = currentDistance;
             Vertex nextVertex = current;
 
             for (std::pair<Vertex, double> v : not_visited) {
                 if (not_visited.size() == 1) {
                     nextVertex = v.first;
                 } else {
-                    if (nextShortest < 0 || v.second < nextShortest) {
+                    if (nextShortest == currentDistance || v.second < nextShortest) {
                         nextVertex = v.first;
                         nextShortest = v.second;
                     }

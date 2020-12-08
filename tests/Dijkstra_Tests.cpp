@@ -54,11 +54,12 @@ TEST_CASE("DIJKSTRA UNWEIGHTED DIVERGING PATHS DISTANCE", "[Dijkstra]") {
     //     std::cout << edge.first << std::endl;
     // }
     
-    distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "f", "e");
-    REQUIRE(distance == 3.0);
+    //distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "f", "c");
+    //REQUIRE(distance == 1.0);
 
     distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "e", "f");
     REQUIRE(distance == 3.0);
+
 
 
 
