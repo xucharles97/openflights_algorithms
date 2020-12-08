@@ -21,7 +21,7 @@ namespace Dijkstra {
             //if the source isn't in the graph, return empty map
             return distances;
         }
-        std::cout << "Line " << __LINE__ << std::endl;
+        // std::cout << "Line " << __LINE__ << std::endl;
         std::vector<Vertex> vertices = g_.getVertices();
         std::unordered_map<Vertex, double> not_visited; //key is Vertex, value is current distance to source (to make it easier to check for next node to visit)
         for (Vertex v : vertices) {
@@ -29,23 +29,23 @@ namespace Dijkstra {
             not_visited.insert(std::make_pair(v, -1.0));
             distances.insert(std::make_pair(v , std::make_pair(-1.0, source)));
         }
-        std::cout << "Line " << __LINE__ << std::endl;
+        // std::cout << "Line " << __LINE__ << std::endl;
 
         if (distances.find(source) == distances.end()) {
             return std::unordered_map<Vertex, std::pair<double, Vertex>>();
         }
-        std::cout << "Line " << __LINE__ << std::endl;
+        // std::cout << "Line " << __LINE__ << std::endl;
         Vertex current = source;
         distances[current].first = 0.0;
         while (not_visited.size() != 0) {
             //Update weights for nodes adjacent to current
             //Find unvisited node with next smallest distance, set to current
-            std::cout << "Line " << __LINE__ << std::endl;
+            // std::cout << "Line " << __LINE__ << std::endl;
             
-            for (std::pair<Vertex, double> n : not_visited) {
-                std::cout << n.first;
-            }
-            std::cout << std::endl;
+            // for (std::pair<Vertex, double> n : not_visited) {
+            //     std::cout << n.first;
+            // }
+            // std::cout << std::endl;
             std::vector<std::pair<Vertex, double>> adjacent = g_.getAdjacentWeighted(current);
             double currentDistance = distances[current].first;
 
@@ -63,10 +63,15 @@ namespace Dijkstra {
             Vertex nextVertex = current;
 
             for (std::pair<Vertex, double> v : not_visited) {
-                if (v.second < nextShortest) {
+                if (not_visited.size() == 1) {
                     nextVertex = v.first;
-                    nextShortest = v.second;
+                } else {
+                    if (v.second < nextShortest) {
+                        nextVertex = v.first;
+                        nextShortest = v.second;
+                    }
                 }
+                
             }
 
             not_visited.erase(current);
@@ -82,9 +87,7 @@ namespace Dijkstra {
      */
     template <class Vertex>    
     double getDistanceBetweenPoints(Graph<Vertex>& g_, Vertex source, Vertex sink) {
-        std::cout << "Line " << __LINE__ << std::endl;
         std::unordered_map<Vertex, std::pair<double, Vertex>> distances = Dijkstra::getDistanceDataForVertex(g_, source);
-        std::cout << "Line " << __LINE__ << std::endl;
         if (distances.find(sink) == distances.end()) {
             return -1.0;
         }
