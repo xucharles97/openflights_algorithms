@@ -101,6 +101,8 @@ vector<Vertex> shortestPathBetweenTwoVertices(Graph<Vertex>& graph, Vertex sourc
 
     if (minPaths.find(source) == minPaths.end())
         return shortestPath; // Source doesn't exist
+    if (minPaths.find(dest) == minPaths.end())
+        return shortestPath; // Dest doesn't exist
 
     shortestPath.push_back(source);
     while (source != dest) {
