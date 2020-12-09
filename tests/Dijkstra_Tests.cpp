@@ -417,3 +417,16 @@ TEST_CASE("Get Dijkstra path for vertex that doesn't exist", "[Dijkstra][Path]")
     path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "i", "j");
     REQUIRE(path.size() == 0.0);
 }
+
+TEST_CASE("Dijkstra handles empty graph", "[Dijkstra][Data]") {
+    Graph<std::string> graph;
+
+    std::unordered_map<std::string, std::pair<double, std::string>> data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "a");
+    REQUIRE(data.size() == 0.0);
+
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "b");
+    REQUIRE(path.size() == 0.0);
+
+    double distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "a", "b");
+    REQUIRE(distance == -1.0);
+}
