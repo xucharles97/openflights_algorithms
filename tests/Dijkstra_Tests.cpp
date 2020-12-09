@@ -43,7 +43,7 @@ TEST_CASE("Dijkstra get distance for unweighted complex graph", "[Dijkstra][Dist
     graph.insertEdge("d", "e");
     
     distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "f", "e");
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "f", "e");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "f", "e");
     REQUIRE(distance == 3.0);
 
     distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "e", "f");
@@ -89,7 +89,7 @@ TEST_CASE("Dijkstra get distance for weighted complex graph", "[Dijkstra][Distan
     graph.insertEdge("d", "e", 2.1);
     
     distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "f", "e");
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "f", "e");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "f", "e");
     REQUIRE(distance == 5.6);
 
     distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "e", "f");
@@ -108,7 +108,7 @@ TEST_CASE("Dijkstra get path for unweighted single edge graph", "[Dijkstra][Path
     edges.push_back(Edge<std::string>("a", "b"));
 
     Graph<std::string> graph(edges);
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "b");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "b");
     REQUIRE(path.size() == 1);
     auto iter = path.begin();
     REQUIRE((*iter).source == "a");
@@ -117,7 +117,7 @@ TEST_CASE("Dijkstra get path for unweighted single edge graph", "[Dijkstra][Path
 
 
     graph.insertEdge("b", "c");
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "c");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "c");
     REQUIRE(path.size() == 2);
     iter = path.begin();
     REQUIRE((*iter).source == "a");
@@ -129,7 +129,7 @@ TEST_CASE("Dijkstra get path for unweighted single edge graph", "[Dijkstra][Path
     REQUIRE((*iter).dest == "c");
     REQUIRE((*iter).getWeight() == 1);
 
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "c", "a");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "c", "a");
     REQUIRE(path.size() == 0); //path doesn't exist b/c it's a directed graph
 
 }
@@ -144,7 +144,7 @@ TEST_CASE("Dijkstra get path for unweighted complex graph", "[Dijkstra][Path]") 
 
 
     Graph<std::string> graph(edges);
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "d");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "d");
 
     REQUIRE(path.size() == 1.0);
     auto iter = path.begin();
@@ -154,7 +154,7 @@ TEST_CASE("Dijkstra get path for unweighted complex graph", "[Dijkstra][Path]") 
     graph.insertEdge("f", "c");
     graph.insertEdge("d", "e");
     
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "f", "e");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "f", "e");
 
     REQUIRE(path.size() == 3.0);
     iter = path.begin();
@@ -172,7 +172,7 @@ TEST_CASE("Dijkstra get path for unweighted complex graph", "[Dijkstra][Path]") 
     REQUIRE((*iter).dest == "e");
     REQUIRE((*iter).getWeight() == 1);
 
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "e", "f");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "e", "f");
     REQUIRE(path.size() == 0.0); //path does not exist 
 }
 
@@ -182,7 +182,7 @@ TEST_CASE("Dijkstra get path for weighted single edge graph", "[Dijkstra][Path]"
     edges.push_back(Edge<std::string>("a", "b", 1.9));
 
     Graph<std::string> graph(edges);
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "b");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "b");
     REQUIRE(path.size() == 1);
     auto iter = path.begin();
     REQUIRE((*iter).source == "a");
@@ -191,7 +191,7 @@ TEST_CASE("Dijkstra get path for weighted single edge graph", "[Dijkstra][Path]"
 
 
     graph.insertEdge("b", "c", 0.3);
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "c");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "c");
     REQUIRE(path.size() == 2);
     iter = path.begin();
     REQUIRE((*iter).source == "a");
@@ -203,7 +203,7 @@ TEST_CASE("Dijkstra get path for weighted single edge graph", "[Dijkstra][Path]"
     REQUIRE((*iter).dest == "c");
     REQUIRE((*iter).getWeight() == 0.3);
 
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "c", "a");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "c", "a");
     REQUIRE(path.size() == 0); //path doesn't exist b/c it's a directed graph
 
 }
@@ -218,7 +218,7 @@ TEST_CASE("Dijkstra get path for weighted complex graph", "[Dijkstra][Path]") {
 
 
     Graph<std::string> graph(edges);
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "d");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "d");
 
     REQUIRE(path.size() == 3.0);
     auto iter = path.begin();
@@ -241,7 +241,7 @@ TEST_CASE("Dijkstra get path for weighted complex graph", "[Dijkstra][Path]") {
     graph.insertEdge("f", "c", 10.1);
     graph.insertEdge("d", "e", 3.9);
     
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "f", "e");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "f", "e");
 
     REQUIRE(path.size() == 3.0);
     iter = path.begin();
@@ -259,11 +259,11 @@ TEST_CASE("Dijkstra get path for weighted complex graph", "[Dijkstra][Path]") {
     REQUIRE((*iter).dest == "e");
     REQUIRE((*iter).getWeight() == 3.9);
 
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "e", "f");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "e", "f");
     REQUIRE(path.size() == 0.0); //path does not exist 
     
     graph.insertEdge("a", "c", 1.5);
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "d");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "d");
     REQUIRE(path.size() == 2.0);
     iter = path.begin();
     REQUIRE((*iter).source == "a");
@@ -409,13 +409,13 @@ TEST_CASE("Get Dijkstra path for vertex that doesn't exist", "[Dijkstra][Path]")
     Graph<std::string> graph(edges);
     graph.insertEdge("e", "f", 10.1);
 
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "f", "g");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "f", "g");
     REQUIRE(path.size() == 0.0);
 
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "h");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "h");
     REQUIRE(path.size() == 0.0);
 
-    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "i", "j");
+    path = Dijkstra::getPathBetweenPoints<std::string>(graph, "i", "j");
     REQUIRE(path.size() == 0.0);
 }
 
@@ -425,7 +425,7 @@ TEST_CASE("Dijkstra handles empty graph", "[Dijkstra][Data][Path][Distance]") {
     std::unordered_map<std::string, std::pair<double, std::string>> data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "a");
     REQUIRE(data.size() == 0.0);
 
-    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "b");
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string>(graph, "a", "b");
     REQUIRE(path.size() == 0.0);
 
     double distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "a", "b");
@@ -442,13 +442,13 @@ TEST_CASE("Dijkstra path print statement", "[Dijkstra][Path][Print]") {
 
 
     Graph<std::string> graph(edges);
-    std::string str = Dijkstra::getPrintStatementForDijkstraPath<std::string, Edge<std::string>>(graph, "a", "d");
+    std::string str = Dijkstra::getPrintStatementForDijkstraPath<std::string>(graph, "a", "d");
     std::string expected = "The shortest path from a to d is: a->b->c->d";
     REQUIRE(str == expected);
 
 
     expected = "There is no path from f to g";
-    str = Dijkstra::getPrintStatementForDijkstraPath<std::string, Edge<std::string>>(graph, "f", "g");
+    str = Dijkstra::getPrintStatementForDijkstraPath<std::string>(graph, "f", "g");
     REQUIRE(str == expected);
 
     
@@ -464,13 +464,13 @@ TEST_CASE("Dijkstra distance print statement", "[Dijkstra][Distance][Print]") {
 
 
     Graph<std::string> graph(edges);
-    std::string str = Dijkstra::getPrintStatementForDijkstraDistance<std::string, Edge<std::string>>(graph, "a", "d");
+    std::string str = Dijkstra::getPrintStatementForDijkstraDistance<std::string>(graph, "a", "d");
     std::string expected = "The shortest distance from a to d is: 6.500000";
     REQUIRE(str == expected);
 
 
     expected = "There is no path from f to g";
-    str = Dijkstra::getPrintStatementForDijkstraDistance<std::string, Edge<std::string>>(graph, "f", "g");
+    str = Dijkstra::getPrintStatementForDijkstraDistance<std::string>(graph, "f", "g");
     REQUIRE(str == expected);
 
     
@@ -486,13 +486,13 @@ TEST_CASE("Dijkstra data print statement", "[Dijkstra][Data][Print]") {
 
 
     Graph<std::string> graph(edges);
-    std::string str = Dijkstra::getPrintStatementForDijkstraData<std::string, Edge<std::string>>(graph, "b");
+    std::string str = Dijkstra::getPrintStatementForDijkstraData<std::string>(graph, "b");
     std::string expected = "From surce vector b:\nThere is no path to a\nVertex c is 3 away, coming from vertex b\nVertex d is 4.5 away, coming from vertex c";
     REQUIRE(str == expected);
 
 
     expected = "There is no path from f to g";
-    str = Dijkstra::getPrintStatementForDijkstraDistance<std::string, Edge<std::string>>(graph, "f", "g");
+    str = Dijkstra::getPrintStatementForDijkstraDistance<std::string>(graph, "f", "g");
     REQUIRE(str == expected);
 
     
