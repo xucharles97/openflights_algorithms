@@ -125,3 +125,15 @@ template <class Vertex> Edge<Vertex> Graph<Vertex>::removeEdge(Vertex src, Verte
 template <class Vertex> bool Graph<Vertex>::edgeExists(Vertex v1, Vertex v2) const {
     return adj.find(v1) != adj.end() && adj[v1].find(v2) != adj[v1].end();
 }
+
+template <class Vertex> bool Graph<Vertex>::vertexExists(Vertex v1) const { 
+    //not using std::find since it sometimes segfaults
+    vector<Vertex> vertices = getVertices();
+    for (Vertex v : vertices) {
+        if (v == v1) {
+            return true;
+        }
+    }
+    return false;
+
+}

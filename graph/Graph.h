@@ -28,6 +28,7 @@ template <class Vertex> class Graph {
     double getEdgeWeight(Vertex src, Vertex dest) const;
     Edge<Vertex> removeEdge(Vertex src, Vertex dest);
     bool edgeExists(Vertex v1, Vertex v2) const;
+    bool vertexExists(Vertex v1) const;
 
   private:
     mutable unordered_map<Vertex, unordered_map<Vertex, Edge<Vertex>>> adj;
