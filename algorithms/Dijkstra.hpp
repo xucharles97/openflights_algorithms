@@ -18,7 +18,7 @@ namespace Dijkstra {
     template <class Vertex>    
     std::unordered_map<Vertex, std::pair<double, Vertex>> getDistanceDataForVertex(Graph<Vertex>& g_, Vertex source) {
         std::unordered_map<Vertex, std::pair<double, Vertex>> distances;
-        if (std::find(g_.getVertices().begin(), g_.getVertices().end(), source) == g_.getVertices().end()) {
+        if (!g_.vertexExists(source)) {
             //if the source isn't in the graph, return empty map
             return distances;
         }
