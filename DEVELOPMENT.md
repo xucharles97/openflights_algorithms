@@ -67,11 +67,13 @@
 	* Tests to check correctness of data map in graphs with and without diverging paths
 	* Tests to check handling of vertices not in graph
 	* Tests to check handling of empty graph
+	* Checks print output of Dijkstra functions
 * Updated Dijkstra class
 	* Added code to prevent visiting vertices without paths to the source
 	* Added code to handle empty graph inputs
 	* Added code to handle vertex inputs that are not in the graph
 	* Added comments for documentation purposes
+	* Added helper functions to print outputs of Dijkstra functions
 * Fixed infinite loop bugs in Dijkstra functions
 * Updated Graph class
 	* Fixed bug in getEdge() function
