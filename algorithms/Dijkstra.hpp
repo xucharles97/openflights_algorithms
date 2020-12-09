@@ -17,27 +17,37 @@ namespace Dijkstra {
      */
     template <class Vertex>    
     std::unordered_map<Vertex, std::pair<double, Vertex>> getDistanceDataForVertex(Graph<Vertex>& g_, Vertex source) {
+
+        //key data structures to be used
+
+        //map to return. Key is vertex, value is pair of distance and previous Vertex
         std::unordered_map<Vertex, std::pair<double, Vertex>> distances;
+
+        //Keeps track of which vertices haven't been visited. Once a vertex has been visited, its corresponding element is deleted
+        std::unordered_map<Vertex, double> not_visited; //key is Vertex, value is current distance to source (to make it easier to check for next node to visit)
+
+        //check for empty graph
         if (g_.getVertices().size() == 0) {
             return distances;
         }
+
+        //if the source isn't in the graph, return empty map
         if (!g_.vertexExists(source)) {
-            //if the source isn't in the graph, return empty map
             return distances;
         }
+
+
+
+        //populate data structures with vertex data
         std::vector<Vertex> vertices = g_.getVertices();
-        std::unordered_map<Vertex, double> not_visited; //key is Vertex, value is current distance to source (to make it easier to check for next node to visit)
         for (Vertex v : vertices) {
-            //set up distances
+            //Default distance value is -1.0 - use to track if no path to the vertex has been found
             not_visited.insert(std::make_pair(v, -1.0));
             distances.insert(std::make_pair(v , std::make_pair(-1.0, Edge<Vertex>().source)));
         }
 
-        if (distances.find(source) == distances.end()) {
-            return std::unordered_map<Vertex, std::pair<double, Vertex>>();
-        }
 
-        // std::cout << "Getting Data for Source " << source << std::endl;
+        //set source as starting vertex, update distance to 0
         Vertex current = source;
         distances[current].first = 0.0;
         distances[current].second = source;
@@ -46,52 +56,53 @@ namespace Dijkstra {
             //Update weights for nodes adjacent to current
             //Find unvisited node with next smallest distance, set to current
 
-            
-            // for (std::pair<Vertex, double> n : not_visited) {
-            //     std::cout << n.first;
-            // }
-            // std::cout << std::endl;
             std::vector<std::pair<Vertex, double>> adjacent = g_.getAdjacentWeighted(current);
             double currentDistance = distances[current].first;
-            // std::cout << "Currently on " << current << " at distance " << currentDistance << " with " << adjacent.size() << " adjacent vectors" << std::endl;
 
+            //iterate through adjacent vertices, update distance/previous vertex as needed
             for (std::pair<Vertex, double> adj : adjacent) {
-                // std::cout << "Adjacent vertex " << adj.first << " with edge weight " << adj.second << std::endl;
-                // std::cout << "Current adjacent distance to source: " << distances[adj.first].first << " with previous vertex " << distances[adj.first].second << std::endl;
                 
                 Edge<Vertex> currentEdge = g_.getEdge(current, adj.first);
+                //check if the edge connecting the current vertex to the adjacent one is outgoing
                 if (currentEdge.source != current) {
+                    //if there is no outgoing edge to the adjacent vertex, skip this vertex
                     continue;
                 }
-                // std::cout << "Current edge from getEdge: " << currentEdge.source << " to " << currentEdge.dest << " with edge weight " << currentEdge.getWeight() << std::endl;
+
+                //update distance/previous vertex if:
+                //1) vertex doesn't have a path yet or 2) vertex has a path to source, but is longer than the current path
+                //must also be in not_visited
                 if ((distances[adj.first].first == -1.0 || distances[adj.first].first > currentDistance + adj.second) && not_visited.find(adj.first) != not_visited.end()) {
-                    //if current distance is -1 (hasn't been visited yet) or is longer than the path from current vector, update the distance
                     not_visited[adj.first] = currentDistance + adj.second;
                     distances[adj.first].first = currentDistance + adj.second;
-                    distances[adj.first].second = current;
-                    // std::cout << "Updating data. New distance: " << not_visited[adj.first] << ". New prev vertex: " << distances[adj.first].second << std::endl;
+                    distances[adj.first].second = current; //set previous vertex to current
                 }
             }
             
-
+            //determine next vertex to visit
             double nextShortest = -1.0;
             Vertex nextVertex = current;
+            
+            //delete current vertex from not_visited so it doesn't accidentally get chosen
             not_visited.erase(current);
+
+            //if current vertex is last one, exit loop
             if (not_visited.empty()) {
                 break;
             }
-            // std::cout << not_visited.size() << " remaining nodes to visit." << std::endl;
+
+            //iterate throuth not_visited to find vertex with shortest distance
             for (std::pair<Vertex, double> v : not_visited) {
-                // std::cout << "Checking vertex " << v.first << " with distance " << v.second << ". nextShortest " << nextShortest << std::endl;
                 if (not_visited.size() == 1) {
+                    //if there's only one vertex left, then visit it if it has a path to the source
                     if (v.second != -1.0) {
                         nextVertex = v.first;
                     }
                 } else {
+                    //set vertex to nextVertex if it's the first vertex with a path to the source, or if it's not the first but it has a shorter path to the vertex
                     if ((nextShortest == -1.0 && v.second != -1.0) || (nextShortest != -1.0 && v.second != -1.0 && v.second < nextShortest)) {
                         nextVertex = v.first;
                         nextShortest = v.second;
-                        // std::cout << "Setting nextVertex to " << nextVertex << " and nextShortest to " << nextShortest << std::endl;
                     }
                 }
                 
@@ -109,14 +120,20 @@ namespace Dijkstra {
     
     /**
      * Uses Dijkstra's algorithm to get the distance of the shortest path between two points
-     * @return shortest distance between two points as a double. Returns -1.0 if one of the inputs is invalid
+     * @return shortest distance between two points as a double. Returns -1.0 if one of the inputs is invalid or if there is no path between the two
      */
     template <class Vertex>    
     double getDistanceBetweenPoints(Graph<Vertex>& g_, Vertex source, Vertex sink) {
+
+        //get data to derive distance
         std::unordered_map<Vertex, std::pair<double, Vertex>> distances = Dijkstra::getDistanceDataForVertex(g_, source);
+
+        //if the destination is not in the graph, return -1
         if (distances.find(sink) == distances.end()) {
             return -1.0;
         }
+
+        //return the double in the value pair of the distance map. Will be -1 if there is no path to the source
         return distances[sink].first;
     }
 
@@ -126,23 +143,34 @@ namespace Dijkstra {
      */
     template <class Vertex, class Edge>    
     std::vector<Edge> getPathBetweenPoints(Graph<Vertex>& g_, Vertex source, Vertex sink) {
+
+        //get data to derive path from
         std::unordered_map<Vertex, std::pair<double, Vertex>> distances = getDistanceDataForVertex(g_, source);
+
+        //if destination is not in the graph, return empty vector
         if (distances.find(sink) == distances.end()) {
             return std::vector<Edge>();
         }
-        std::pair<double, Vertex> data = distances[sink];
 
-        std::vector<Edge> path;
+        std::vector<Edge> path; //vector to return
+
+        //start at element of last element, work backwards, and reverse the vector in the end
+        std::pair<double, Vertex> data = distances[sink];
         Vertex current = sink;
         while (current != source) {
             data = distances[current];
-            //std::cout << "inserting edge " << data.second << " to " << current << std::endl;
+
+            //check to make sure the edge is valid. If invalid, return empty vector
             if (!g_.edgeExists(data.second, current)) {
                 return std::vector<Edge>();
             }
+
+            //insert edge to the back of the vector, update current vertex to the one that leads into the current one
             path.push_back(g_.getEdge(data.second, current));
             current = data.second;
         }
+
+        //reverse the path vector to get the correct order
         std::reverse(path.begin(), path.end());
         return path;
     }
