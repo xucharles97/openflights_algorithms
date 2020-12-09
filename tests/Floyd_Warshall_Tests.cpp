@@ -76,6 +76,14 @@ Graph<string> makeNegWeightGraph() {
     return stringGraph;
 }
 
+Graph<string> makeEmptyGraph() {
+    vector<Edge<string>> strEdges;
+
+    Graph<string> stringGraph(strEdges);
+
+    return stringGraph;
+}
+
 /////////////////////////////////////
 ////////////// BASIC ////////////////
 /////////////////////////////////////
@@ -205,6 +213,82 @@ TEST_CASE("Shortest Path Tree #2", "[Path]") {
 ////////////// NEGATIVE WEIGHT /////////////////
 ////////////////////////////////////////////////
 
+TEST_CASE("Shortest Distance Negative Weights", "[Distance]") {
+    Graph<string> stringGraph = makeNegWeightGraph();
+
+    unordered_map<string, unordered_map<string, double>> shortestDistances =
+        shortestDistanceBetweenAllVertices(stringGraph);
+
+    REQUIRE(shortestDistances["a"]["e"] == 15);
+    REQUIRE(shortestDistances["a"]["f"] == 8);
+}
+
+TEST_CASE("Shortest Path Negative Weights #1", "[Path]") {
+    Graph<string> stringGraph = makeNegWeightGraph();
+
+    std::vector<string> shortestPath =
+        shortestPathBetweenTwoVertices<string>(stringGraph, "a", "e");
+
+    // From A to E
+    REQUIRE(shortestPath[0] == "a");
+    REQUIRE(shortestPath[1] == "b");
+    REQUIRE(shortestPath[2] == "e");
+}
+
+TEST_CASE("Shortest Path Negative Weights #2", "[Path]") {
+    Graph<string> stringGraph = makeNegWeightGraph();
+
+    std::vector<string> shortestPath =
+        shortestPathBetweenTwoVertices<string>(stringGraph, "a", "f");
+
+    // From A to F
+    REQUIRE(shortestPath[0] == "a");
+    REQUIRE(shortestPath[1] == "c");
+    REQUIRE(shortestPath[2] == "f");
+}
+
 ////////////////////////////////////////////////
 ///////////////// EDGE CASES ///////////////////
 ////////////////////////////////////////////////
+
+TEST_CASE("Shortest Distance Edge Case: Empty Graph", "[Distance]") {
+    Graph<string> stringGraph = makeEmptyGraph();
+
+    unordered_map<string, unordered_map<string, double>> shortestDistances =
+        shortestDistanceBetweenAllVertices(stringGraph);
+
+    REQUIRE(true == true); // Ran without crashing
+    REQUIRE(shortestDistances.size() == 0);
+}
+
+TEST_CASE("Shortest Path Edge Case: Empty Graph", "[Path]") {
+    Graph<string> stringGraph = makeEmptyGraph();
+
+    std::vector<string> shortestPath =
+        shortestPathBetweenTwoVertices<string>(stringGraph, "a", "b");
+
+    REQUIRE(true == true); // Ran without crashing
+    REQUIRE(shortestPath.size() == 0);
+}
+
+TEST_CASE("Shortest Path Edge Case: Invalid Source", "[Path]") {
+    Graph<string> stringGraph = makeEmptyGraph();
+    stringGraph.insertEdge("a", "b");
+
+    std::vector<string> shortestPath =
+        shortestPathBetweenTwoVertices<string>(stringGraph, "c", "b");
+
+    REQUIRE(true == true); // Ran without crashing
+    REQUIRE(shortestPath.size() == 0);
+}
+
+TEST_CASE("Shortest Path Edge Case: Invalid Dest", "[Path]") {
+    Graph<string> stringGraph = makeEmptyGraph();
+    stringGraph.insertEdge("a", "b");
+
+    std::vector<string> shortestPath =
+        shortestPathBetweenTwoVertices<string>(stringGraph, "a", "c");
+
+    REQUIRE(true == true); // Ran without crashing
+    REQUIRE(shortestPath.size() == 0);
+}
