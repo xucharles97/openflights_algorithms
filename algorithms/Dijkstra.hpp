@@ -226,6 +226,9 @@ namespace Dijkstra {
             if (d.second.first == -1.0) {
                 ss << "\nThere is no path to " << d.first;
             } else {
+                if (d.first == source) {
+                    continue;
+                }
                 ss << "\nVertex " << d.first << " is " << d.second.first << " away, coming from vertex " << d.second.second;
             }
         }
