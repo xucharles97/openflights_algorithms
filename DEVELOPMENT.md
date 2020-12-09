@@ -76,3 +76,8 @@
 * Updated Graph class
 	* Fixed bug in getEdge() function
 	* Added vertexExists() function
+
+# 12-9-2020
+## Madhav
+* Fixed Floyd Warshall bug for min path
+* Added all tests for Floyd Warshall and verified correctness
