@@ -177,7 +177,7 @@ namespace Dijkstra {
 
     template <class Vertex, class Edge>
     std::string getPrintStatementForDijkstraPath(Graph<Vertex>& g_, Vertex source, Vertex sink) {
-        std::vector<Edge> path = getPathBetweenPoints(g_, source, sink);
+        std::vector<Edge<Vertex>> path = getPathBetweenPoints(g_, source, sink);
         if (path.size() == 0) {
             return "There is no path from " + str(source) + " to " + str(sink);
         }
@@ -198,9 +198,9 @@ namespace Dijkstra {
     std::string getPrintStatementForDijkstraDistance(Graph<Vertex>& g_, Vertex source, Vertex sink) {
         double distance = getDistanceBetweenPoints(g_, source, sink);
         if (distance == -1) {
-            return "There is no path from " + str(source) + " to " + str(sink);
+            return std::string("There is no path from ").append(source).append(" to ").append(sink);
         }
-        std::string str = "The shortest distance from " + str(source) + " to " + str(sink) + " is: " + distance;
+        std::string str = std::string("The shortest distance from ").append(source).append(" to ").append(sink).append(" is: ") + std::to_string(distance);
 
         return str;
 
@@ -220,7 +220,7 @@ namespace Dijkstra {
             if (d.second.first == -1.0) {
                 str += "\nThere is no path to " + str(d.first);
             } else {
-                str += "\nvertex " + str(d.first) + " is " + str(d.second.first) + " away, coming from vertex " + str(d.second.second); 
+                str += "\nVertex " + str(d.first) + " is " + str(d.second.first) + " away, coming from vertex " + str(d.second.second); 
             }
         }
 

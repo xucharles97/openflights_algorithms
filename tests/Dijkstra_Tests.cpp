@@ -1,3 +1,4 @@
+//Created by Charles Xu on December 7, 2020
 #include "../algorithms/Dijkstra.hpp"
 #include "../graph/Graph.h"
 #include "../graph/Edge.h"
@@ -418,7 +419,7 @@ TEST_CASE("Get Dijkstra path for vertex that doesn't exist", "[Dijkstra][Path]")
     REQUIRE(path.size() == 0.0);
 }
 
-TEST_CASE("Dijkstra handles empty graph", "[Dijkstra][Data]") {
+TEST_CASE("Dijkstra handles empty graph", "[Dijkstra][Data][Path][Distance]") {
     Graph<std::string> graph;
 
     std::unordered_map<std::string, std::pair<double, std::string>> data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "a");
@@ -429,4 +430,70 @@ TEST_CASE("Dijkstra handles empty graph", "[Dijkstra][Data]") {
 
     double distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "a", "b");
     REQUIRE(distance == -1.0);
+}
+
+TEST_CASE("Dijkstra path print statement", "[Dijkstra][Path][Print]") {
+    std::vector<Edge<std::string>> edges;
+
+    edges.push_back(Edge<std::string>("a", "b", 2));
+    edges.push_back(Edge<std::string>("b", "c", 1.5));
+    edges.push_back(Edge<std::string>("c", "d", 3));
+    edges.push_back(Edge<std::string>("a", "d", 10));
+
+
+    Graph<std::string> graph(edges);
+    std::string str = Dijkstra::getPrintStatementForDijkstraPath<std::string, Edge<std::string>>(graph, "a", "d");
+    std::string expected = "The shortest path from a to d is: a->b->c->d";
+    REQUIRE(str == expected);
+
+
+    expected = "There is no path from f to g";
+    str = Dijkstra::getPrintStatementForDijkstraPath<std::string, Edge<std::string>>(graph, "f", "g");
+    REQUIRE(str == expected);
+
+    
+}
+
+TEST_CASE("Dijkstra distance print statement", "[Dijkstra][Distance][Print]") {
+    std::vector<Edge<std::string>> edges;
+
+    edges.push_back(Edge<std::string>("a", "b", 2));
+    edges.push_back(Edge<std::string>("b", "c", 1.5));
+    edges.push_back(Edge<std::string>("c", "d", 3));
+    edges.push_back(Edge<std::string>("a", "d", 10));
+
+
+    Graph<std::string> graph(edges);
+    std::string str = Dijkstra::getPrintStatementForDijkstraDistance<std::string, Edge<std::string>>(graph, "a", "d");
+    std::string expected = "The shortest distance from a to d is: 6.500000";
+    REQUIRE(str == expected);
+
+
+    expected = "There is no path from f to g";
+    str = Dijkstra::getPrintStatementForDijkstraDistance<std::string, Edge<std::string>>(graph, "f", "g");
+    REQUIRE(str == expected);
+
+    
+}
+
+TEST_CASE("Dijkstra data print statement", "[Dijkstra][Data][Print]") {
+    std::vector<Edge<std::string>> edges;
+
+    edges.push_back(Edge<std::string>("a", "b", 2));
+    edges.push_back(Edge<std::string>("b", "c", 1.5));
+    edges.push_back(Edge<std::string>("c", "d", 3));
+    edges.push_back(Edge<std::string>("a", "d", 10));
+
+
+    Graph<std::string> graph(edges);
+    std::string str = Dijkstra::getPrintStatementForDijkstraData<std::string, Edge<std::string>>(graph, "b");
+    std::string expected = "From surce vector b:\nThere is no path to a\nVertex c is 3 away, coming from vertex b\nVertex d is 4.5 away, coming from vertex c";
+    REQUIRE(str == expected);
+
+
+    expected = "There is no path from f to g";
+    str = Dijkstra::getPrintStatementForDijkstraDistance<std::string, Edge<std::string>>(graph, "f", "g");
+    REQUIRE(str == expected);
+
+    
 }
