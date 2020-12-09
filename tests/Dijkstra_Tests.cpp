@@ -47,6 +47,9 @@ TEST_CASE("Dijkstra get distance for unweighted complex graph", "[Dijkstra][Dist
 
     distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "e", "f");
     REQUIRE(distance == -1.0); //path does not exist 
+
+    distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "c", "a");
+    REQUIRE(distance == -1.0); //path does not exist 
 }
 
 TEST_CASE("Dijkstra get distance for weighted simple graph", "[Dijkstra][Distance]") {
