@@ -47,6 +47,9 @@ TEST_CASE("Dijkstra get distance for unweighted complex graph", "[Dijkstra][Dist
 
     distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "e", "f");
     REQUIRE(distance == -1.0); //path does not exist 
+
+    distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "c", "a");
+    REQUIRE(distance == -1.0); //path does not exist 
 }
 
 TEST_CASE("Dijkstra get distance for weighted simple graph", "[Dijkstra][Distance]") {
@@ -375,4 +378,55 @@ TEST_CASE("Dijkstra get general data weighted complex graph", "[Dijkstra][Data]"
     REQUIRE(data["e"].first == 1.1);
     REQUIRE(data["e"].second == "f");
 
+}
+
+TEST_CASE("Get Dijkstra data for vertex that doesn't exist", "[Dijkstra][Data]") {
+    std::vector<Edge<std::string>> edges;
+
+    edges.push_back(Edge<std::string>("a", "b", 0.3));
+    edges.push_back(Edge<std::string>("a", "c", 1.3));
+    edges.push_back(Edge<std::string>("a", "d", 2.4));
+    edges.push_back(Edge<std::string>("a", "e", 5.9));
+
+
+    Graph<std::string> graph(edges);
+    graph.insertEdge("e", "f", 10.1);
+
+    std::unordered_map<std::string, std::pair<double, std::string>> data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "g");
+    REQUIRE(data.size() == 0.0);
+}
+
+TEST_CASE("Get Dijkstra path for vertex that doesn't exist", "[Dijkstra][Path]") {
+    std::vector<Edge<std::string>> edges;
+
+    edges.push_back(Edge<std::string>("a", "b", 0.3));
+    edges.push_back(Edge<std::string>("a", "c", 1.3));
+    edges.push_back(Edge<std::string>("a", "d", 2.4));
+    edges.push_back(Edge<std::string>("a", "e", 5.9));
+
+
+    Graph<std::string> graph(edges);
+    graph.insertEdge("e", "f", 10.1);
+
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "f", "g");
+    REQUIRE(path.size() == 0.0);
+
+    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "h");
+    REQUIRE(path.size() == 0.0);
+
+    path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "i", "j");
+    REQUIRE(path.size() == 0.0);
+}
+
+TEST_CASE("Dijkstra handles empty graph", "[Dijkstra][Data]") {
+    Graph<std::string> graph;
+
+    std::unordered_map<std::string, std::pair<double, std::string>> data = Dijkstra::getDistanceDataForVertex<std::string>(graph, "a");
+    REQUIRE(data.size() == 0.0);
+
+    std::vector<Edge<std::string>> path = Dijkstra::getPathBetweenPoints<std::string, Edge<std::string>>(graph, "a", "b");
+    REQUIRE(path.size() == 0.0);
+
+    double distance = Dijkstra::getDistanceBetweenPoints<std::string>(graph, "a", "b");
+    REQUIRE(distance == -1.0);
 }
