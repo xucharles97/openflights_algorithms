@@ -175,5 +175,63 @@ namespace Dijkstra {
         return path;
     }
 
-    
+    template <class Vertex, class Edge>
+    std::string getPrintStatementForDijkstraPath(Graph<Vertex>& g_, Vertex source, Vertex sink) {
+        std::vector<Edge> path = getPathBetweenPoints(g_, source, sink);
+        if (path.size() == 0) {
+            return "There is no path from " + str(source) + " to " + str(sink);
+        }
+        std::string str = "The shortest path from " + str(source) + " to " + str(sink) + " is: " + str(source);
+        for (Edge edge : path) {
+            str += "->" + str(edge.dest);
+        }
+        return str;
+
+    }
+
+    template <class Vertex, class Edge>
+    void printShortestDijkstraPath(Graph<Vertex>& g_, Vertex source, Vertex sink) {
+        std::cout << getPrintStatementForDijkstraPath(g_, source, sink) << std::endl;
+    }
+
+    template <class Vertex, class Edge>
+    std::string getPrintStatementForDijkstraDistance(Graph<Vertex>& g_, Vertex source, Vertex sink) {
+        double distance = getDistanceBetweenPoints(g_, source, sink);
+        if (distance == -1) {
+            return "There is no path from " + str(source) + " to " + str(sink);
+        }
+        std::string str = "The shortest distance from " + str(source) + " to " + str(sink) + " is: " + distance;
+
+        return str;
+
+    }
+
+    template <class Vertex, class Edge>
+    void printShortestDijkstraDistance(Graph<Vertex>& g_, Vertex source, Vertex sink) {
+        std::cout << getPrintStatementForDijkstraDistance(g_, source, sink) << std::endl;
+    }
+
+    template <class Vertex, class Edge>
+    std::string getPrintStatementForDijkstraData(Graph<Vertex>& g_, Vertex source) {
+        std::unordered_map<Vertex, std::pair<double, Vertex>> data = getDistanceDataForVertex(g_, source);
+
+        std::string str = "From source vector " + str(source) + ":";
+        for (std::pair<Vertex, std::pair<double, Vertex>> d : data) {
+            if (d.second.first == -1.0) {
+                str += "\nThere is no path to " + str(d.first);
+            } else {
+                str += "\nvertex " + str(d.first) + " is " + str(d.second.first) + " away, coming from vertex " + str(d.second.second); 
+            }
+        }
+
+        return str;
+
+    }
+
+    template <class Vertex, class Edge>
+    void printDijkstraData(Graph<Vertex>& g_, Vertex source) {
+        std::cout << getPrintStatementForDijkstraData(g_, source) << std::endl;
+    }
+
+
 }
