@@ -36,22 +36,12 @@ Graph<string> makeWheelGraph() {
     return stringGraph;
 }
 
-Graph<string> makeStickWithShortcutGraph() {
+Graph<string> makeStickGraph() {
     vector<Edge<string>> strEdges;
     strEdges.push_back(Edge<string>("a", "b", 1));
     strEdges.push_back(Edge<string>("b", "a", 1));
     strEdges.push_back(Edge<string>("b", "c", 1));
     strEdges.push_back(Edge<string>("c", "b", 1));
-
-    Graph<string> stringGraph(strEdges);
-
-    return stringGraph;
-}
-
-Graph<string> makeNegWeightGraph() {
-    vector<Edge<string>> strEdges;
-
-    // TODO
 
     Graph<string> stringGraph(strEdges);
 
@@ -72,10 +62,27 @@ Graph<string> makeEmptyGraph() {
 ////////////// BASIC ////////////////
 /////////////////////////////////////
 
-// TEST_CASE("Betweeness Centrality Basic", "[Betweeness]") {
-//     Graph<string> stringGraph = BetweenessTestHelpers::makeBasicGraph();
+TEST_CASE("Betweeness Centrality Wheel", "[Betweeness]") {
+    Graph<string> stringGraph = BetweenessTestHelpers::makeWheelGraph();
 
-//     string centralVertex = mostCentralVertex(stringGraph);
+    string centralVertex = mostCentralVertex(stringGraph);
 
-//     REQUIRE(centralVertex == "a");
-// }
+    REQUIRE(centralVertex == "c");
+}
+
+TEST_CASE("Betweeness Centrality Stick", "[Betweeness]") {
+    Graph<string> stringGraph = BetweenessTestHelpers::makeStickGraph();
+
+    string centralVertex = mostCentralVertex(stringGraph);
+
+    REQUIRE(centralVertex == "b");
+}
+
+TEST_CASE("Betweeness Centrality Empty", "[Betweeness]") {
+    Graph<string> stringGraph = BetweenessTestHelpers::makeEmptyGraph();
+
+    string centralVertex = mostCentralVertex(stringGraph);
+
+    // Didn't crash!
+    REQUIRE(centralVertex == ""); // Empty should return empty constructor of type
+}
