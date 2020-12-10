@@ -14,11 +14,15 @@ template <typename Vertex> class GraphTraversal {
   public:
     class Iterator : std::iterator<std::forward_iterator_tag, Vertex> {
       public:
-        Iterator() : traversal(NULL) {}
+        Iterator() : traversal(NULL), root(Vertex()) {}
 
         Iterator(GraphTraversal<Vertex>* traversal, Vertex root)
             : traversal(traversal), root(root) {
-            current = traversal->peek();
+            if (!traversal->empty()) {
+                current = traversal->peek();
+            } else {
+                current = root;
+            }
         }
 
         Iterator& operator++() {

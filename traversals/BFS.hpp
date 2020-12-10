@@ -10,13 +10,16 @@
 template <typename Vertex> class BFS : public GraphTraversal<Vertex> {
   public:
     BFS(Graph<Vertex> graph, Vertex root) : graph(graph), root(root) {
+        if (!graph.vertexExists(root)) {
+            return;
+        }
         queue.push(root);
         this->add(root);
         visitedmap.insert(make_pair("a", true));
     }
 
     typename GraphTraversal<Vertex>::Iterator begin() {
-        return typename GraphTraversal<Vertex>::Iterator(this, root);
+        return typename GraphTraversal<Vertex>::Iterator(this, queue.empty() ? Vertex() : queue.front());
     }
 
     typename GraphTraversal<Vertex>::Iterator end() {
