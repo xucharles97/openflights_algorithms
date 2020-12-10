@@ -1,6 +1,7 @@
 #include "graph/Edge.h"
 #include "graph/Graph.h"
 #include "graph/Parsing.hpp"
+#include "algorithms/BetweenessCentrality.hpp"
 #include <iostream>
 
 int main() {
@@ -8,5 +9,6 @@ int main() {
     std::string routeFile = "datasets/routes.txt";
     Graph<std::string> graph = Parsing::buildGraphFromFiles<std::string>(airportFile, routeFile);
 
-    std::cout << "running main" << std::endl;
+    std::string centralVertex = BetweenessCentrality::mostCentralVertex(graph);
+    std::cout << "Central vertex: " << centralVertex << std::endl;
 }
