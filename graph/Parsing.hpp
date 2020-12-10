@@ -66,14 +66,30 @@ readRoutesFromFile(std::string fileName,
         while (getline(ss, dataElem, ',')) {
             lineData.push_back(dataElem);
         }
+        for (unsigned int i = 0; i < lineData.size(); ++i) {
+            if (lineData[i][0] == '"' && lineData[i].back() != '"') {
+                unsigned int j;
+                for (j = i + 1; j < lineData.size() && lineData[j].back() != '"'; ++j) {
+                    lineData[i].append(lineData[j]);
+                }
+                lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
+            }
+        }
+        for (auto &data : lineData) {
+            if (data[0] == '"' && data.back() == '"') {
+                data = data.substr(1, data.size() - 2);
+            }
+        }
         // airport IATA code
-        std::string source_id = lineData[1];
-        std::string dest_id = lineData[3];
+        std::string source_id = lineData[2];
+        std::string dest_id = lineData[4];
         std::pair<double, double> latLng1 = airportCoords[source_id];
         std::pair<double, double> latLng2 = airportCoords[dest_id];
         double dist = distanceLatLng(latLng1.first, latLng1.second, latLng2.first, latLng2.second);
         edges.push_back(Edge<Vertex>(source_id, dest_id, dist));
     }
+
+    return edges;
 }
 
 template <class Vertex>
@@ -88,6 +104,20 @@ void buildGraphFromFile(std::string fileName, Graph<Vertex>& g,
         std::stringstream ss(line);
         while (getline(ss, dataElem, ',')) {
             lineData.push_back(dataElem);
+        }
+        for (unsigned int i = 0; i < lineData.size(); ++i) {
+            if (lineData[i][0] == '"' && lineData[i].back() != '"') {
+                unsigned int j;
+                for (j = i + 1; j < lineData.size() && lineData[j].back() != '"'; ++j) {
+                    lineData[i].append(lineData[j]);
+                }
+                lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
+            }
+        }
+        for (auto &data : lineData) {
+            if (data[0] == '"' && data.back() == '"') {
+                data = data.substr(1, data.size() - 2);
+            }
         }
         // airport IATA code
         std::string source_id = lineData[2];
