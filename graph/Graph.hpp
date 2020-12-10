@@ -4,11 +4,11 @@
 
 #include "Edge.h"
 #include "Graph.h"
+#include <iostream>
 #include <unordered_map>
+#include <unordered_set>
 #include <utility>
 #include <vector>
-#include <unordered_set>
-#include <iostream>
 using std::make_pair;
 using std::pair;
 using std::vector;
@@ -50,11 +50,10 @@ template <class Vertex> vector<Vertex> Graph<Vertex>::getVertices() const {
     std::unordered_set<Vertex> included_vertices;
     vector<Vertex> vertices;
     vector<Edge<Vertex>> edges = getEdges();
-    for (Edge<Vertex> edge: edges) {
+    for (Edge<Vertex> edge : edges) {
         if (included_vertices.find(edge.source) == included_vertices.end()) {
             vertices.push_back(edge.source);
             included_vertices.insert(edge.source);
-
         }
         if (included_vertices.find(edge.dest) == included_vertices.end()) {
             vertices.push_back(edge.dest);
@@ -126,8 +125,8 @@ template <class Vertex> bool Graph<Vertex>::edgeExists(Vertex v1, Vertex v2) con
     return adj.find(v1) != adj.end() && adj[v1].find(v2) != adj[v1].end();
 }
 
-template <class Vertex> bool Graph<Vertex>::vertexExists(Vertex v1) const { 
-    //not using std::find since it sometimes segfaults
+template <class Vertex> bool Graph<Vertex>::vertexExists(Vertex v1) const {
+    // not using std::find since it sometimes segfaults
     vector<Vertex> vertices = getVertices();
     for (Vertex v : vertices) {
         if (v == v1) {
@@ -135,5 +134,4 @@ template <class Vertex> bool Graph<Vertex>::vertexExists(Vertex v1) const {
         }
     }
     return false;
-
 }

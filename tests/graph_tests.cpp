@@ -2,13 +2,19 @@
 // Created by elia on 11/29/20.
 //
 
+#include "../catch/catch.hpp"
 #include "../graph/Edge.h"
 #include "../graph/Graph.h"
-
-#include "../catch/catch.hpp"
+#include "../graph/MathFunctions.hpp"
+#include "../graph/Parsing.hpp"
 
 #include <iostream>
+#include <unordered_map>
 #include <vector>
+
+using Parsing::buildGraphFromFile;
+using Parsing::buildGraphFromFiles;
+using Parsing::readAirportsFromFile;
 
 TEST_CASE("EDGES WORK WITH INT") {
     Edge<int> e1(0, 1, 0.5);
@@ -49,5 +55,14 @@ TEST_CASE("GRAPH CONSTRUCTOR WORKS") {
                                    " weight: " + std::to_string(e.getWeight());
         REQUIRE(actualOutput == expectedOutput2[i]);
         i++;
+    }
+}
+
+TEST_CASE("READING GRAPHS WORKS") {
+    unordered_map<std::string, std::pair<double, double>> airports =
+        readAirportsFromFile("datasets/airports.txt");
+    for (auto elem : airports) {
+        std::cout << "airport: " << elem.first << "lat: " << elem.second.first
+                  << "long: " << elem.second.second << std::endl;
     }
 }

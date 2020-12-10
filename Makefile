@@ -42,6 +42,8 @@ endif
 
 # ALL UNDERLYING GRAPH FILES
 GRAPH_FILES = graph/Graph.h graph/Edge.h graph/Graph.hpp
+# ALL UNDERLYING PARSING FILES
+PARSING_FILES = graph/MathFunctions.hpp graph/Parsing.hpp
 # ALL UNDERLYING TRAVERSAL FILES
 TRAVERSAL_FILES = traversals/BFS.hpp traversals/DFS.hpp traversals/GraphTraversal.hpp
 # ALL UNDERLYING ALGORITHM FILES
@@ -63,7 +65,7 @@ $(EXENAME): output_msg $(OBJS)
 test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o
 	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o $(LDFLAGS) -o test
 
-graph_tests.o: tests/graph_tests.cpp $(GRAPH_FILES)
+graph_tests.o: tests/graph_tests.cpp $(GRAPH_FILES) $(PARSING_FILES)
 	$(CXX) $(CXXFLAGS) -o graph_tests.o tests/graph_tests.cpp
 
 bfs_dfs_tests.o: tests/BFS_and_DFS_tests.cpp $(GRAPH_FILES) $(TRAVERSAL_FILES)
