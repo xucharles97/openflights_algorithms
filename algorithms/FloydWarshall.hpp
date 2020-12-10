@@ -10,9 +10,6 @@
 #include "../graph/Edge.h"
 #include "../graph/Graph.h"
 
-#include "../traversals/BFS.hpp"
-#include "../traversals/DFS.hpp"
-
 using std::numeric_limits;
 using std::unordered_map;
 using std::vector;
@@ -65,16 +62,16 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
             minDistances[v][u] = numeric_limits<double>::infinity();
 
     // Init map (each vertex to every vertex) of min path to its destination vertex
-    unordered_map<Vertex, unordered_map<Vertex, Vertex>> minPaths;
+    unordered_map<Vertex, unordered_map<Vertex, Vertex>> nextStep;
     for (Edge<Vertex> edge : edges) {
         minDistances[edge.source][edge.dest] = edge.getWeight();
-        minPaths[edge.source][edge.dest] = edge.dest;
+        nextStep[edge.source][edge.dest] = edge.dest;
     }
 
     // Init distances to self to 0 and path from self to self
     for (Vertex v : vertices) {
         minDistances[v][v] = 0;
-        minPaths[v][v] = v;
+        nextStep[v][v] = v;
     }
 
     // Find the minimum distance from each vertex to every other vertex
@@ -85,28 +82,28 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
                 if (minDistances[u][v] + minDistances[v][w] < minDistances[u][w]) {
                     // Shorter path
                     minDistances[u][w] = minDistances[u][v] + minDistances[v][w];
-                    minPaths[u][w] = minPaths[u][v];
+                    nextStep[u][w] = nextStep[u][v];
                 }
 
     // Now the map contains the best next vertex for each Vertex v to Vertex u
-    return minPaths;
+    return nextStep;
 }
 
 template <class Vertex>
 vector<Vertex> shortestPathBetweenTwoVertices(Graph<Vertex>& graph, Vertex source, Vertex dest) {
     vector<Vertex> shortestPath; // To return
 
-    unordered_map<Vertex, unordered_map<Vertex, Vertex>> minPaths =
+    unordered_map<Vertex, unordered_map<Vertex, Vertex>> nextStep =
         shortestPathBetweenAllVertices(graph);
 
-    if (minPaths.find(source) == minPaths.end())
+    if (nextStep.find(source) == nextStep.end())
         return shortestPath; // Source doesn't exist
-    if (minPaths.find(dest) == minPaths.end())
+    if (nextStep.find(dest) == nextStep.end())
         return shortestPath; // Dest doesn't exist
 
     shortestPath.push_back(source);
     while (source != dest) {
-        source = minPaths[source][dest];
+        source = nextStep[source][dest];
         shortestPath.push_back(source);
     }
 

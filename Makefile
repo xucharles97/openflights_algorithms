@@ -47,7 +47,7 @@ PARSING_FILES = graph/MathFunctions.hpp graph/Parsing.hpp
 # ALL UNDERLYING TRAVERSAL FILES
 TRAVERSAL_FILES = traversals/BFS.hpp traversals/DFS.hpp traversals/GraphTraversal.hpp
 # ALL UNDERLYING ALGORITHM FILES
-ALGORITHM_FILES = algorithms/FloydWarshall.hpp algorithms/Dijkstra.hpp
+ALGORITHM_FILES = algorithms/FloydWarshall.hpp algorithms/Dijkstra.hpp algorithms/BetweenessCentrality.hpp
 
 output_msg: ; $(CLANG_VERSION_MSG)
 
@@ -62,8 +62,8 @@ $(EXENAME): output_msg $(OBJS)
 
 # Test Targets
 
-test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o
-	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o $(LDFLAGS) -o test
+test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o betweeness_tests.o
+	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o betweeness_tests.o $(LDFLAGS) -o test
 
 graph_tests.o: tests/graph_tests.cpp $(GRAPH_FILES) $(PARSING_FILES)
 	$(CXX) $(CXXFLAGS) -o graph_tests.o tests/graph_tests.cpp
@@ -76,6 +76,9 @@ floyd_warshall_tests.o: tests/Floyd_Warshall_Tests.cpp $(GRAPH_FILES) $(ALGORITH
 
 dijkstra_tests.o: tests/Dijkstra_Tests.cpp $(GRAPH_FILES) $(ALGORITHM_FILES)
 	$(CXX) $(CXXFLAGS) -o dijkstra_tests.o tests/Dijkstra_Tests.cpp
+
+betweeness_tests.o: tests/Betweeness_Centrality_Tests.cpp $(GRAPH_FILES) $(ALGORITHM_FILES)
+	$(CXX) $(CXXFLAGS) -o betweeness_tests.o tests/Betweeness_Centrality_Tests.cpp
 
 catchmain.o: catch/catchmain.cpp catch/catch.hpp
 	$(CXX) $(CXXFLAGS) catch/catchmain.cpp

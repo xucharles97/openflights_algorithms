@@ -22,6 +22,8 @@ using FloydWarshall::shortestDistanceBetweenAllVertices;
 using FloydWarshall::shortestPathBetweenAllVertices;
 using FloydWarshall::shortestPathBetweenTwoVertices;
 
+namespace FloydTestHelpers {
+
 Graph<string> makeBasicGraph() {
     vector<Edge<string>> strEdges;
     strEdges.push_back(Edge<string>("a", "b", 5));
@@ -84,12 +86,14 @@ Graph<string> makeEmptyGraph() {
     return stringGraph;
 }
 
+} // namespace FloydTestHelpers
+
 /////////////////////////////////////
 ////////////// BASIC ////////////////
 /////////////////////////////////////
 
 TEST_CASE("Shortest Distance Basic", "[Distance]") {
-    Graph<string> stringGraph = makeBasicGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeBasicGraph();
 
     unordered_map<string, unordered_map<string, double>> shortestDistances =
         shortestDistanceBetweenAllVertices(stringGraph);
@@ -100,7 +104,7 @@ TEST_CASE("Shortest Distance Basic", "[Distance]") {
 }
 
 TEST_CASE("Shortest Path Basic #1", "[Path]") {
-    Graph<string> stringGraph = makeBasicGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeBasicGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "a", "a");
@@ -110,7 +114,7 @@ TEST_CASE("Shortest Path Basic #1", "[Path]") {
 }
 
 TEST_CASE("Shortest Path Basic #2", "[Path]") {
-    Graph<string> stringGraph = makeBasicGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeBasicGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "a", "c");
@@ -123,7 +127,7 @@ TEST_CASE("Shortest Path Basic #2", "[Path]") {
 }
 
 TEST_CASE("Shortest Path Basic #3", "[Path]") {
-    Graph<string> stringGraph = makeBasicGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeBasicGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "d", "b");
@@ -139,7 +143,7 @@ TEST_CASE("Shortest Path Basic #3", "[Path]") {
 /////////////////////////////////////
 
 TEST_CASE("Shortest Distance Stick With Shortcut", "[Distance]") {
-    Graph<string> stringGraph = makeStickWithShortcutGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeStickWithShortcutGraph();
 
     unordered_map<string, unordered_map<string, double>> shortestDistances =
         shortestDistanceBetweenAllVertices(stringGraph);
@@ -149,7 +153,7 @@ TEST_CASE("Shortest Distance Stick With Shortcut", "[Distance]") {
 }
 
 TEST_CASE("Shortest Path Stick With Shortcut #1", "[Path]") {
-    Graph<string> stringGraph = makeStickWithShortcutGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeStickWithShortcutGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "a", "e");
@@ -160,7 +164,7 @@ TEST_CASE("Shortest Path Stick With Shortcut #1", "[Path]") {
 }
 
 TEST_CASE("Shortest Path Stick With Shortcut #2", "[Path]") {
-    Graph<string> stringGraph = makeStickWithShortcutGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeStickWithShortcutGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "b", "e");
@@ -177,7 +181,7 @@ TEST_CASE("Shortest Path Stick With Shortcut #2", "[Path]") {
 /////////////////////////////////////
 
 TEST_CASE("Shortest Distance Tree", "[Distance]") {
-    Graph<string> stringGraph = makeTreeGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeTreeGraph();
 
     unordered_map<string, unordered_map<string, double>> shortestDistances =
         shortestDistanceBetweenAllVertices(stringGraph);
@@ -187,7 +191,7 @@ TEST_CASE("Shortest Distance Tree", "[Distance]") {
 }
 
 TEST_CASE("Shortest Path Tree #1", "[Path]") {
-    Graph<string> stringGraph = makeTreeGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeTreeGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "a", "e");
@@ -199,7 +203,7 @@ TEST_CASE("Shortest Path Tree #1", "[Path]") {
 }
 
 TEST_CASE("Shortest Path Tree #2", "[Path]") {
-    Graph<string> stringGraph = makeTreeGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeTreeGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "c", "d");
@@ -214,7 +218,7 @@ TEST_CASE("Shortest Path Tree #2", "[Path]") {
 ////////////////////////////////////////////////
 
 TEST_CASE("Shortest Distance Negative Weights", "[Distance]") {
-    Graph<string> stringGraph = makeNegWeightGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeNegWeightGraph();
 
     unordered_map<string, unordered_map<string, double>> shortestDistances =
         shortestDistanceBetweenAllVertices(stringGraph);
@@ -224,7 +228,7 @@ TEST_CASE("Shortest Distance Negative Weights", "[Distance]") {
 }
 
 TEST_CASE("Shortest Path Negative Weights #1", "[Path]") {
-    Graph<string> stringGraph = makeNegWeightGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeNegWeightGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "a", "e");
@@ -236,7 +240,7 @@ TEST_CASE("Shortest Path Negative Weights #1", "[Path]") {
 }
 
 TEST_CASE("Shortest Path Negative Weights #2", "[Path]") {
-    Graph<string> stringGraph = makeNegWeightGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeNegWeightGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "a", "f");
@@ -252,7 +256,7 @@ TEST_CASE("Shortest Path Negative Weights #2", "[Path]") {
 ////////////////////////////////////////////////
 
 TEST_CASE("Shortest Distance Edge Case: Empty Graph", "[Distance]") {
-    Graph<string> stringGraph = makeEmptyGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeEmptyGraph();
 
     unordered_map<string, unordered_map<string, double>> shortestDistances =
         shortestDistanceBetweenAllVertices(stringGraph);
@@ -262,7 +266,7 @@ TEST_CASE("Shortest Distance Edge Case: Empty Graph", "[Distance]") {
 }
 
 TEST_CASE("Shortest Path Edge Case: Empty Graph", "[Path]") {
-    Graph<string> stringGraph = makeEmptyGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeEmptyGraph();
 
     std::vector<string> shortestPath =
         shortestPathBetweenTwoVertices<string>(stringGraph, "a", "b");
@@ -272,7 +276,7 @@ TEST_CASE("Shortest Path Edge Case: Empty Graph", "[Path]") {
 }
 
 TEST_CASE("Shortest Path Edge Case: Invalid Source", "[Path]") {
-    Graph<string> stringGraph = makeEmptyGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeEmptyGraph();
     stringGraph.insertEdge("a", "b");
 
     std::vector<string> shortestPath =
@@ -283,7 +287,7 @@ TEST_CASE("Shortest Path Edge Case: Invalid Source", "[Path]") {
 }
 
 TEST_CASE("Shortest Path Edge Case: Invalid Dest", "[Path]") {
-    Graph<string> stringGraph = makeEmptyGraph();
+    Graph<string> stringGraph = FloydTestHelpers::makeEmptyGraph();
     stringGraph.insertEdge("a", "b");
 
     std::vector<string> shortestPath =
