@@ -10,13 +10,37 @@
 #include "../catch/catch.hpp"
 #include <vector>
 
-TEST_CASE("BFS_BASIC", "[BFS]") {
+Graph<std::string> makeBasicGraph() {
     std::vector<Edge<std::string>> strEdges;
     strEdges.push_back(Edge<std::string>("a", "b", 4));
     strEdges.push_back(Edge<std::string>("b", "c", 2));
     strEdges.push_back(Edge<std::string>("c", "d"));
     strEdges.push_back(Edge<std::string>("d", "b", 1.5));
-    Graph<std::string> stringGraph(strEdges);
+    return Graph<std::string>(strEdges);
+}
+
+Graph<std::string> makeTreeGraph() {
+    std::vector<Edge<std::string>> strEdges;
+    strEdges.push_back(Edge<std::string>("a", "b"));
+    strEdges.push_back(Edge<std::string>("a", "c"));
+    strEdges.push_back(Edge<std::string>("b", "d"));
+    strEdges.push_back(Edge<std::string>("b", "e"));
+    strEdges.push_back(Edge<std::string>("c", "f"));
+    strEdges.push_back(Edge<std::string>("c", "g"));
+    return Graph<std::string>(strEdges);
+}
+
+Graph<std::string> makeCircularGraph() {
+    std::vector<Edge<std::string>> strEdges;
+    strEdges.push_back(Edge<std::string>("a", "b"));
+    strEdges.push_back(Edge<std::string>("b", "c"));
+    strEdges.push_back(Edge<std::string>("c", "d"));
+    strEdges.push_back(Edge<std::string>("d", "a"));
+    return Graph<std::string>(strEdges);
+}
+
+TEST_CASE("BFS_BASIC", "[BFS]") {
+    Graph<std::string> stringGraph = makeBasicGraph();
 
     BFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
@@ -38,14 +62,7 @@ TEST_CASE("BFS_BASIC", "[BFS]") {
 }
 
 TEST_CASE("BFS_TREE_TEST", "[BFS]") {
-    std::vector<Edge<std::string>> strEdges;
-    strEdges.push_back(Edge<std::string>("a", "b"));
-    strEdges.push_back(Edge<std::string>("a", "c"));
-    strEdges.push_back(Edge<std::string>("b", "d"));
-    strEdges.push_back(Edge<std::string>("b", "e"));
-    strEdges.push_back(Edge<std::string>("c", "f"));
-    strEdges.push_back(Edge<std::string>("c", "g"));
-    Graph<std::string> stringGraph(strEdges);
+    Graph<std::string> stringGraph = makeTreeGraph();
 
     BFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
@@ -69,12 +86,7 @@ TEST_CASE("BFS_TREE_TEST", "[BFS]") {
 }
 
 TEST_CASE("BFS_CIRCULAR_TEST", "[BFS]") {
-    std::vector<Edge<std::string>> strEdges;
-    strEdges.push_back(Edge<std::string>("a", "b"));
-    strEdges.push_back(Edge<std::string>("b", "c"));
-    strEdges.push_back(Edge<std::string>("c", "d"));
-    strEdges.push_back(Edge<std::string>("d", "a"));
-    Graph<std::string> stringGraph(strEdges);
+    Graph<std::string> stringGraph = makeCircularGraph();
 
     BFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
@@ -92,12 +104,7 @@ TEST_CASE("BFS_CIRCULAR_TEST", "[BFS]") {
 }
 
 TEST_CASE("DFS BASIC", "[DFS]") {
-    std::vector<Edge<std::string>> strEdges;
-    strEdges.push_back(Edge<std::string>("a", "b", 4));
-    strEdges.push_back(Edge<std::string>("b", "c", 2));
-    strEdges.push_back(Edge<std::string>("c", "d"));
-    strEdges.push_back(Edge<std::string>("d", "b", 1.5));
-    Graph<std::string> stringGraph(strEdges);
+    Graph<std::string> stringGraph = makeBasicGraph();
 
     DFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
@@ -119,14 +126,7 @@ TEST_CASE("DFS BASIC", "[DFS]") {
 }
 
 TEST_CASE("DFS_TREE_TEST", "[DFS]") {
-    std::vector<Edge<std::string>> strEdges;
-    strEdges.push_back(Edge<std::string>("a", "b"));
-    strEdges.push_back(Edge<std::string>("a", "c"));
-    strEdges.push_back(Edge<std::string>("b", "d"));
-    strEdges.push_back(Edge<std::string>("b", "e"));
-    strEdges.push_back(Edge<std::string>("c", "f"));
-    strEdges.push_back(Edge<std::string>("c", "g"));
-    Graph<std::string> stringGraph(strEdges);
+    Graph<std::string> stringGraph = makeTreeGraph();
 
     DFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
@@ -150,12 +150,7 @@ TEST_CASE("DFS_TREE_TEST", "[DFS]") {
 }
 
 TEST_CASE("DFS_CIRCULAR_TEST", "[DFS]") {
-    std::vector<Edge<std::string>> strEdges;
-    strEdges.push_back(Edge<std::string>("a", "b"));
-    strEdges.push_back(Edge<std::string>("b", "c"));
-    strEdges.push_back(Edge<std::string>("c", "d"));
-    strEdges.push_back(Edge<std::string>("d", "a"));
-    Graph<std::string> stringGraph(strEdges);
+    Graph<std::string> stringGraph = makeCircularGraph();
 
     DFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
@@ -171,3 +166,5 @@ TEST_CASE("DFS_CIRCULAR_TEST", "[DFS]") {
 
     REQUIRE(!(it != t.end()));
 }
+
+//empty graph tests
