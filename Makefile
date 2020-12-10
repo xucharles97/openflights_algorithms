@@ -53,12 +53,15 @@ output_msg: ; $(CLANG_VERSION_MSG)
 
 .PHONY: all test clean output_msg
 
-# Main Targets
-
 all : $(EXENAME)
 
-$(EXENAME): output_msg $(OBJS)
-	$(LD) $(OBJS) $(LDFLAGS) -o $(EXENAME)
+# Main Targets
+
+main: output_msg main.o
+	$(LD) main.o $(LDFLAGS) -o main
+
+main.o: main.cpp $(GRAPH_FILES) $(PARSING_FILES) $(ALGORITHM_FILES)
+	$(CXX) $(CXXFLAGS) -o main.o main.cpp
 
 # Test Targets
 
