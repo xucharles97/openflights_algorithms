@@ -83,3 +83,12 @@
 ## Madhav
 * Fixed Floyd Warshall bug for min path
 * Added all tests for Floyd Warshall and verified correctness
+## Elia
+* Added Parsing functions to read from airport and route data files
+* Bug exists with comma separation, will fix tomorrow
+
+# 12-10-2020
+## Elia
+* Fixed bug with parsing
+* Implemented thorough tests for parsing/mathfunctions
+* Passes with flying colors

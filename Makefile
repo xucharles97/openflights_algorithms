@@ -62,11 +62,14 @@ $(EXENAME): output_msg $(OBJS)
 
 # Test Targets
 
-test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o betweeness_tests.o
-	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o betweeness_tests.o $(LDFLAGS) -o test
+test: output_msg catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o betweeness_tests.o parsing_tests.o
+	$(LD) catchmain.o graph_tests.o bfs_dfs_tests.o floyd_warshall_tests.o dijkstra_tests.o betweeness_tests.o parsing_tests.o $(LDFLAGS) -o test
 
-graph_tests.o: tests/graph_tests.cpp $(GRAPH_FILES) $(PARSING_FILES)
-	$(CXX) $(CXXFLAGS) -o graph_tests.o tests/graph_tests.cpp
+parsing_tests.o: tests/Parsing_Tests.cpp $(GRAPH_FILES) $(PARSING_FILES)
+	$(CXX) $(CXXFLAGS) -o parsing_tests.o tests/Parsing_Tests.cpp
+
+graph_tests.o: tests/Graph_Tests.cpp $(GRAPH_FILES) $(PARSING_FILES)
+	$(CXX) $(CXXFLAGS) -o graph_tests.o tests/Graph_Tests.cpp
 
 bfs_dfs_tests.o: tests/BFS_and_DFS_tests.cpp $(GRAPH_FILES) $(TRAVERSAL_FILES)
 	$(CXX) $(CXXFLAGS) -o bfs_dfs_tests.o tests/BFS_and_DFS_tests.cpp
