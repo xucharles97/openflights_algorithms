@@ -47,7 +47,7 @@ template <class Vertex> Vertex mostCentralVertex(Graph<Vertex>& graph) {
         return Vertex();
 
     auto maxPtr = std::max_element(vertexFrequencies.begin(), vertexFrequencies.end());
-    Vertex mostBetweenVertex = maxPtr.first;
+    Vertex mostBetweenVertex = maxPtr->first;
 
     return mostBetweenVertex;
 }
