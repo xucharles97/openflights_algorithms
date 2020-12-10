@@ -96,3 +96,6 @@
 * Passes with flying colors
 ## Madhav
 * Added all tests for Betweeness Centrality and verified correctness
+## Matt
+* Fix issues with traversals of empty graphs
+* Add empty graph traversal tests
