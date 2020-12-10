@@ -101,3 +101,5 @@
 ## Matt
 * Fix issues with traversals of empty graphs
 * Add empty graph traversal tests
+## Charles
+* Updated main.cpp to run Dijkstra's algorithm on a randomly selected vertex in the OpenFlights dataset
