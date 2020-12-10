@@ -61,8 +61,7 @@ TEST_CASE("GRAPH CONSTRUCTOR WORKS") {
 TEST_CASE("READING GRAPHS WORKS") {
     unordered_map<std::string, std::pair<double, double>> airports =
         readAirportsFromFile("datasets/airports.txt");
-    for (auto elem : airports) {
-        std::cout << "airport: " << elem.first << "lat: " << elem.second.first
-                  << "long: " << elem.second.second << std::endl;
-    }
+    REQUIRE((airports.find("GKA") != airports.end()) == true);
+    REQUIRE(airports["GKA"].first == -6.081689834590001);
+    REQUIRE(airports["GKA"].second == 145.391998291);
 }

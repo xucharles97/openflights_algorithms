@@ -8,6 +8,7 @@
 #include "MathFunctions.hpp"
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include <sstream>
 #include <string>
 #include <utility>
@@ -27,10 +28,22 @@ unordered_map<std::string, std::pair<double, double>> readAirportsFromFile(std::
             while (getline(ss, dataElem, ',')) {
                 lineData.push_back(dataElem);
             }
+            for (unsigned int i = 0; i < lineData.size(); ++i) {
+                if (lineData[i][0] == '"' && lineData[i].back() != '"') {
+                    unsigned int j;
+                    for (j = i + 1; j < lineData.size() && lineData[j].back() != '"'; ++j) {
+                        lineData[i].append(lineData[j]);
+                    }
+                    lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
+                }
+            }
+            for (auto &data : lineData) {
+                if (data[0] == '"' && data.back() == '"') {
+                    data = data.substr(1, data.size() - 2);
+                }
+            }
             // airport IATA code
             std::string id = lineData[4];
-            std::cout << line << std::endl;
-            std::cout << id << " " << lineData[6] << " " << lineData[7] << std::endl;
             double latitude = std::stod(lineData[6]);
             double longitude = std::stod(lineData[7]);
             airportCoords[id] = std::make_pair(latitude, longitude);
