@@ -1,7 +1,7 @@
+#include "algorithms/BetweenessCentrality.hpp"
 #include "graph/Edge.h"
 #include "graph/Graph.h"
 #include "graph/Parsing.hpp"
-#include "algorithms/BetweenessCentrality.hpp"
 #include <iostream>
 
 int main() {
