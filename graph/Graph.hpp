@@ -2,6 +2,8 @@
 // Created by elia on 11/29/20.
 //
 
+#pragma once
+
 #include "Edge.h"
 #include "Graph.h"
 #include <iostream>
@@ -9,6 +11,7 @@
 #include <unordered_set>
 #include <utility>
 #include <vector>
+
 using std::make_pair;
 using std::pair;
 using std::vector;

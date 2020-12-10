@@ -26,7 +26,10 @@ Graph<string> makeWheelGraph() {
     strEdges.push_back(Edge<string>("c", "a", 1));
     strEdges.push_back(Edge<string>("d", "c", 1));
     strEdges.push_back(Edge<string>("c", "d", 1));
-    strEdges.push_back(Edge<string>("a", "c", 1));
+    strEdges.push_back(Edge<string>("c", "b", 1));
+    strEdges.push_back(Edge<string>("b", "c", 1));
+    strEdges.push_back(Edge<string>("c", "e", 1));
+    strEdges.push_back(Edge<string>("e", "c", 1));
 
     Graph<string> stringGraph(strEdges);
 
@@ -36,10 +39,9 @@ Graph<string> makeWheelGraph() {
 Graph<string> makeStickWithShortcutGraph() {
     vector<Edge<string>> strEdges;
     strEdges.push_back(Edge<string>("a", "b", 1));
+    strEdges.push_back(Edge<string>("b", "a", 1));
     strEdges.push_back(Edge<string>("b", "c", 1));
-    strEdges.push_back(Edge<string>("c", "d", 1));
-    strEdges.push_back(Edge<string>("d", "e", 1));
-    strEdges.push_back(Edge<string>("a", "e", 3)); // A shortcut
+    strEdges.push_back(Edge<string>("c", "b", 1));
 
     Graph<string> stringGraph(strEdges);
 
@@ -48,14 +50,8 @@ Graph<string> makeStickWithShortcutGraph() {
 
 Graph<string> makeNegWeightGraph() {
     vector<Edge<string>> strEdges;
-    strEdges.push_back(Edge<string>("a", "d", 10));
-    strEdges.push_back(Edge<string>("a", "c", 15));
-    strEdges.push_back(Edge<string>("a", "b", 25));
-    strEdges.push_back(Edge<string>("b", "e", -10));
-    strEdges.push_back(Edge<string>("b", "c", 5));
-    strEdges.push_back(Edge<string>("c", "e", 3));
-    strEdges.push_back(Edge<string>("c", "f", -7));
-    strEdges.push_back(Edge<string>("d", "f", 15));
+
+    // TODO
 
     Graph<string> stringGraph(strEdges);
 
@@ -76,10 +72,10 @@ Graph<string> makeEmptyGraph() {
 ////////////// BASIC ////////////////
 /////////////////////////////////////
 
-TEST_CASE("Betweeness Centrality Basic", "[Betweeness]") {
-    Graph<string> stringGraph = BetweenessTestHelpers::makeBasicGraph();
+// TEST_CASE("Betweeness Centrality Basic", "[Betweeness]") {
+//     Graph<string> stringGraph = BetweenessTestHelpers::makeBasicGraph();
 
-    string centralVertex = mostCentralVertex(stringGraph);
+//     string centralVertex = mostCentralVertex(stringGraph);
 
-    REQUIRE(centralVertex == "a");
-}
+//     REQUIRE(centralVertex == "a");
+// }

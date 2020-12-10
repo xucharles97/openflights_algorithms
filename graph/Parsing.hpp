@@ -1,14 +1,15 @@
 //
 // Created by elia on 12/9/20
 //
+
 #pragma once
 
 #include "Edge.h"
 #include "Graph.h"
 #include "MathFunctions.hpp"
 #include <fstream>
-#include <iostream>
 #include <iomanip>
+#include <iostream>
 #include <sstream>
 #include <string>
 #include <utility>
@@ -37,7 +38,7 @@ unordered_map<std::string, std::pair<double, double>> readAirportsFromFile(std::
                     lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
                 }
             }
-            for (auto &data : lineData) {
+            for (auto& data : lineData) {
                 if (data[0] == '"' && data.back() == '"') {
                     data = data.substr(1, data.size() - 2);
                 }
@@ -75,7 +76,7 @@ readRoutesFromFile(std::string fileName,
                 lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
             }
         }
-        for (auto &data : lineData) {
+        for (auto& data : lineData) {
             if (data[0] == '"' && data.back() == '"') {
                 data = data.substr(1, data.size() - 2);
             }
@@ -114,7 +115,7 @@ void buildGraphFromFile(std::string fileName, Graph<Vertex>& g,
                 lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
             }
         }
-        for (auto &data : lineData) {
+        for (auto& data : lineData) {
             if (data[0] == '"' && data.back() == '"') {
                 data = data.substr(1, data.size() - 2);
             }

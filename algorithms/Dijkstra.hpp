@@ -1,5 +1,7 @@
 // Created by Charles Xu on December 7, 2020
 
+#pragma once
+
 #include "../graph/Edge.h"
 #include "../graph/Graph.h"
 #include <iostream>

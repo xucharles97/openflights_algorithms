@@ -2,6 +2,8 @@
 // Created by Madhav on 12/06/20.
 //
 
+#pragma once
+
 #include <iostream>
 #include <limits>
 #include <unordered_map>
