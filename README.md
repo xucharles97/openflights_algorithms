@@ -5,6 +5,8 @@ Final Project
 
 Betweenness Centrality: Find the Vertex which is most commonly on the shortest path from all other Vertices to all other Vertices. In the context of our dataset (airports and routes), this can be inferred as the airport which is most likely to be part of the shortest route between 2 other airports. 
 
+To run this (which may take a long time!), see the "Main" section below. 
+
 ## Dataset
 
 Both the airports and routes information can be found in the `datasets` folder under the names `airports.txt` and `routes.txt`, respectively.
