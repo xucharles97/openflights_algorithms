@@ -21,11 +21,14 @@ using std::vector;
 namespace BetweenessCentrality {
 
 template <class Vertex> Vertex mostCentralVertex(Graph<Vertex>& graph) {
+    std::cout << "Computing the shortest path between all airports..." << std::endl;
     unordered_map<Vertex, unordered_map<Vertex, Vertex>> nextStep =
         shortestPathBetweenAllVertices(graph);
+    std::cout << "Finished computing the shortest path between all airports!" << std::endl;
 
     // Most central vertex is that which passes through the most number of shortest paths
     // Obviously, exclude paths which have the vertex as the source/destination
+    std::cout << "Finding the most common airport along the shortest paths..." << std::endl;
     unordered_map<Vertex, int> vertexFrequencies;
     for (auto const& u : nextStep) {
         Vertex source = u.first; // For every source...

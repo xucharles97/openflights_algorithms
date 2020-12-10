@@ -59,13 +59,13 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
 
     // Init map (each vertex to every vertex) of min distances to infinity
     unordered_map<Vertex, unordered_map<Vertex, double>> minDistances; // Auxiliary variable
-    std::cout << "Here 1" << std::endl;
+    std::cout << "Initializing distances map..." << std::endl;
     for (Vertex v : vertices)
         for (Vertex u : vertices)
             minDistances[v][u] = numeric_limits<double>::infinity();
 
     // Init map (each vertex to every vertex) of min path to its destination vertex
-    std::cout << "Here 2" << std::endl;
+    std::cout << "Initializing next steps map..." << std::endl;
     unordered_map<Vertex, unordered_map<Vertex, Vertex>> nextStep;
     for (Edge<Vertex> edge : edges) {
         minDistances[edge.source][edge.dest] = edge.getWeight();
@@ -73,7 +73,7 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
     }
 
     // Init distances to self to 0 and path from self to self
-    std::cout << "Here 3" << std::endl;
+    std::cout << "Initializing both maps for edge cases..." << std::endl;
     for (Vertex v : vertices) {
         minDistances[v][v] = 0;
         nextStep[v][v] = v;
@@ -81,7 +81,7 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
 
     // Find the minimum distance from each vertex to every other vertex
     // Consider a different number of vertices along the path each time
-    std::cout << "Here 4" << std::endl;
+    std::cout << "Computing the minimum distances..." << std::endl;
     for (Vertex v : vertices)
         for (Vertex u : vertices)
             for (Vertex w : vertices)
@@ -92,7 +92,6 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
                 }
 
     // Now the map contains the best next vertex for each Vertex v to Vertex u
-    std::cout << "Here 5" << std::endl;
     return nextStep;
 }
 
