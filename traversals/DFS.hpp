@@ -10,13 +10,16 @@
 template <typename Vertex> class DFS : public GraphTraversal<Vertex> {
   public:
     DFS(Graph<Vertex> graph, Vertex root) : graph(graph), root(root) {
+        if (!graph.vertexExists(root)) {
+            return;
+        }
         this->add(root);
         stack.push(root);
         visitedmap.insert(make_pair("a", true));
     }
 
     typename GraphTraversal<Vertex>::Iterator begin() {
-        return typename GraphTraversal<Vertex>::Iterator(this, root);
+        return typename GraphTraversal<Vertex>::Iterator(this, stack.empty() ? Vertex() : stack.top());
     }
 
     typename GraphTraversal<Vertex>::Iterator end() {
