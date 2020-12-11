@@ -18,6 +18,14 @@ using std::vector;
 
 namespace FloydWarshall {
 
+/**
+ * Returns the distance of the shortest possible path between every vertex and every other vertex.
+ * ie. The shortest possible distances. Returns an empty map if graph is empty.
+ *
+ * @param graph The graph
+ * @returns The shortest distances between every vertex and every other vertex, as a
+ * map[source][destination] = double
+ */
 template <class Vertex>
 unordered_map<Vertex, unordered_map<Vertex, double>>
 shortestDistanceBetweenAllVertices(Graph<Vertex>& graph) {
@@ -51,6 +59,14 @@ shortestDistanceBetweenAllVertices(Graph<Vertex>& graph) {
     return minDistances;
 }
 
+/**
+ * Returns the shortest possible path between every vertex and every other vertex as a map of next
+ * steps. ie. The next vertex to travel to. Returns an empty map if graph is empty.
+ *
+ * @param graph The graph
+ * @returns The shortest path between every vertex and every other vertex, as a
+ * map[source][destination] = nextVertex
+ */
 template <class Vertex>
 unordered_map<Vertex, unordered_map<Vertex, Vertex>>
 shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
@@ -95,6 +111,15 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
     return nextStep;
 }
 
+/**
+ * Returns the shortest possible path between 2 given vertices, as a vector representing the path,
+ * inclusive of the source and destination. Returns an empty vector if not possible.
+ *
+ * @param graph The graph
+ * @param source The starting vertex
+ * @param dest The ending vertex
+ * @returns The shortest path between source and dest as a vector of vertices
+ */
 template <class Vertex>
 vector<Vertex> shortestPathBetweenTwoVertices(Graph<Vertex>& graph, Vertex source, Vertex dest) {
     vector<Vertex> shortestPath; // To return

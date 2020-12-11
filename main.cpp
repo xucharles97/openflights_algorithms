@@ -12,6 +12,15 @@ using std::string;
 ///////////// FORWARD DECLARATIONS ///////////////
 //////////////////////////////////////////////////
 
+/**
+ * Returns a graph given two datasets as text files. One is a set of vertices and the other is a set
+ * of edges. For our case specifically, this would represent the airports and routes file,
+ * respectively.
+ *
+ * @param airportsFileName The filename of the airports file (vertices)
+ * @param routesFileName The filename of the routes file (edges)
+ * @returns A graph
+ */
 Graph<string> buildGraph(string airportsFileName, string routesFileName) {
 
     std::cout << "Building graph from airports data at " << airportsFileName
@@ -27,6 +36,12 @@ Graph<string> buildGraph(string airportsFileName, string routesFileName) {
     return graph;
 }
 
+/**
+ * Runs Dijkstra's algorithm on the given graph (ie. Finds the shortest path between every airport).
+ *
+ * @param graph The graph
+ * @returns Nothing (prints output)
+ */
 void runDijkstras(Graph<string>& graph) {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -46,6 +61,13 @@ void runDijkstras(Graph<string>& graph) {
     std::cout << std::endl;
 }
 
+/**
+ * Runs Betweenness Centrality algorithm (using Floyd Warshall) on the given graph (ie. Finds the
+ * most central airport).
+ *
+ * @param graph The graph
+ * @returns Nothing (prints output)
+ */
 void runBetweennessCentrality(Graph<string>& graph) {
     std::cout << "Computing the most central airport. Hold on! This can take a while..."
               << std::endl;

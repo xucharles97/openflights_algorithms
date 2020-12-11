@@ -20,6 +20,13 @@ using std::vector;
 
 namespace BetweennessCentrality {
 
+/**
+ * Returns the most central vertex in the given graph. That is, it returns the vertex in the graph
+ * that is most commonly found on the shortest path between every vertex and every other vertex.
+ *
+ * @param graph The graph
+ * @returns The most central vertex
+ */
 template <class Vertex> Vertex mostCentralVertex(Graph<Vertex>& graph) {
     std::cout << "Computing the shortest path between all airports..." << std::endl;
     unordered_map<Vertex, unordered_map<Vertex, Vertex>> nextStep =
