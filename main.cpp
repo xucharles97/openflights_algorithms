@@ -93,7 +93,7 @@ int main() {
 
     // Prune graph to run algorithms faster (only top X vertices)
     std::cout << "Pruning graph to reduce time" << std::endl;
-    Graph<string> prunedGraph = Parsing::pruneGraphMaxVertices(graph, 500);
+    Graph<string> prunedGraph = Parsing::pruneGraphMaxVertices(graph, 200);
 
     runDijkstras(prunedGraph);
     runBetweennessCentrality(prunedGraph);

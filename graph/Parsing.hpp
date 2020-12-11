@@ -16,6 +16,8 @@
 #include <string>
 #include <utility>
 #include <vector>
+#include <unordered_map>
+#include <map>
 
 using std::pair;
 
@@ -166,13 +168,13 @@ void buildGraphFromFile(std::string fileName, Graph<Vertex>& g,
 }
 
 template <class Vertex> bool cmp(pair<Vertex, int>& a, pair<Vertex, int>& b) {
-    return a.second < b.second;
+    return a.second > b.second;
 }
 
 template <class Vertex> Graph<Vertex> pruneGraphMaxVertices(Graph<Vertex>& graph, int N) {
-    std::unordered_map<Vertex, int> counts;
+    std::vector<std::pair<Vertex, int>> counts;
     for (auto v : graph.getVertices()) {
-        counts[v] = graph.getAdjacent(v).size();
+        counts.push_back(std::make_pair(v, graph.getAdjacent(v).size()));
     }
 
     std::sort(counts.begin(), counts.end(), cmp<Vertex>);
