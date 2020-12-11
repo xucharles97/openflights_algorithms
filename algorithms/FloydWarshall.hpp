@@ -81,6 +81,7 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
             minDistances[v][u] = numeric_limits<double>::infinity();
 
     // Init map (each vertex to every vertex) of min path to its destination vertex
+    // Also init distances to edge weights for every edge
     std::cout << "Initializing next steps map..." << std::endl;
     unordered_map<Vertex, unordered_map<Vertex, Vertex>> nextStep;
     for (Edge<Vertex> edge : edges) {

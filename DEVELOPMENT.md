@@ -104,3 +104,7 @@
 ## Charles
 * Updated main.cpp to run Dijkstra's algorithm on a randomly selected vertex in the OpenFlights dataset
 * Added descriptions for Dijkstra's algorithm to README.md, and updated the description of Betweenness Centrality to talk about Floyd-Warshall
+
+# 12-11-2020
+## Madhav
+* Added documentation
