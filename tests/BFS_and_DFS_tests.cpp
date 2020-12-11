@@ -10,6 +10,7 @@
 #include "../catch/catch.hpp"
 #include <vector>
 
+namespace TraversalTestHelpers {
 Graph<std::string> makeBasicGraph() {
     std::vector<Edge<std::string>> strEdges;
     strEdges.push_back(Edge<std::string>("a", "b", 4));
@@ -43,106 +44,137 @@ Graph<std::string> makeEmptyGraph() {
     std::vector<Edge<std::string>> strEdges;
     return Graph<std::string>(strEdges);
 }
+} // namespace TraversalTestHelpers
 
 TEST_CASE("BFS_BASIC", "[BFS][BASIC]") {
-    Graph<std::string> stringGraph = makeBasicGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeBasicGraph();
 
     BFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
 
-    REQUIRE((*it) == "a"); ++it;
-    REQUIRE((*it) == "b"); ++it;
-    REQUIRE((*it) == "c"); ++it;
-    REQUIRE((*it) == "d"); ++it;
+    REQUIRE((*it) == "a");
+    ++it;
+    REQUIRE((*it) == "b");
+    ++it;
+    REQUIRE((*it) == "c");
+    ++it;
+    REQUIRE((*it) == "d");
+    ++it;
     REQUIRE(!(it != t.end()));
 }
 
 TEST_CASE("BFS_TREE_TEST", "[BFS][TREE]") {
-    Graph<std::string> stringGraph = makeTreeGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeTreeGraph();
 
     BFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
 
-    REQUIRE((*it) == "a"); ++it;
-    REQUIRE((*it) == "c"); ++it;
-    REQUIRE((*it) == "b"); ++it;
-    REQUIRE((*it) == "g"); ++it;
-    REQUIRE((*it) == "f"); ++it;
-    REQUIRE((*it) == "e"); ++it;
-    REQUIRE((*it) == "d"); ++it;
+    REQUIRE((*it) == "a");
+    ++it;
+    REQUIRE((*it) == "c");
+    ++it;
+    REQUIRE((*it) == "b");
+    ++it;
+    REQUIRE((*it) == "g");
+    ++it;
+    REQUIRE((*it) == "f");
+    ++it;
+    REQUIRE((*it) == "e");
+    ++it;
+    REQUIRE((*it) == "d");
+    ++it;
 
     REQUIRE(!(it != t.end()));
 }
 
 TEST_CASE("BFS_CIRCULAR_TEST", "[BFS][CIRCULAR]") {
-    Graph<std::string> stringGraph = makeCircularGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeCircularGraph();
 
     BFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
 
-    REQUIRE((*it) == "a"); ++it;
-    REQUIRE((*it) == "b"); ++it;
-    REQUIRE((*it) == "c"); ++it;
-    REQUIRE((*it) == "d"); ++it;
+    REQUIRE((*it) == "a");
+    ++it;
+    REQUIRE((*it) == "b");
+    ++it;
+    REQUIRE((*it) == "c");
+    ++it;
+    REQUIRE((*it) == "d");
+    ++it;
 
     REQUIRE(!(it != t.end()));
 }
 
 TEST_CASE("BFS_EMPTY_TEST", "[BFS][EMPTY]") {
-    Graph<std::string> stringGraph = makeEmptyGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeEmptyGraph();
 
     BFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
-    
+
     REQUIRE(!(it != t.end()));
 }
 
 TEST_CASE("DFS BASIC", "[DFS][BASIC]") {
-    Graph<std::string> stringGraph = makeBasicGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeBasicGraph();
 
     DFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
 
-    REQUIRE((*it) == "a"); ++it;
-    REQUIRE((*it) == "b"); ++it;
-    REQUIRE((*it) == "c"); ++it;
-    REQUIRE((*it) == "d"); ++it;
+    REQUIRE((*it) == "a");
+    ++it;
+    REQUIRE((*it) == "b");
+    ++it;
+    REQUIRE((*it) == "c");
+    ++it;
+    REQUIRE((*it) == "d");
+    ++it;
     REQUIRE(!(it != t.end()));
 }
 
 TEST_CASE("DFS_TREE_TEST", "[DFS][TREE]") {
-    Graph<std::string> stringGraph = makeTreeGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeTreeGraph();
 
     DFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
 
-    REQUIRE((*it) == "a"); ++it;
-    REQUIRE((*it) == "b"); ++it;
-    REQUIRE((*it) == "d"); ++it;
-    REQUIRE((*it) == "e"); ++it;
-    REQUIRE((*it) == "c"); ++it;
-    REQUIRE((*it) == "f"); ++it;
-    REQUIRE((*it) == "g"); ++it;
+    REQUIRE((*it) == "a");
+    ++it;
+    REQUIRE((*it) == "b");
+    ++it;
+    REQUIRE((*it) == "d");
+    ++it;
+    REQUIRE((*it) == "e");
+    ++it;
+    REQUIRE((*it) == "c");
+    ++it;
+    REQUIRE((*it) == "f");
+    ++it;
+    REQUIRE((*it) == "g");
+    ++it;
 
     REQUIRE(!(it != t.end()));
 }
 
 TEST_CASE("DFS_CIRCULAR_TEST", "[DFS][CIRCULAR]") {
-    Graph<std::string> stringGraph = makeCircularGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeCircularGraph();
 
     DFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
 
-    REQUIRE((*it) == "a"); ++it;
-    REQUIRE((*it) == "b"); ++it;
-    REQUIRE((*it) == "c"); ++it;
-    REQUIRE((*it) == "d"); ++it;
+    REQUIRE((*it) == "a");
+    ++it;
+    REQUIRE((*it) == "b");
+    ++it;
+    REQUIRE((*it) == "c");
+    ++it;
+    REQUIRE((*it) == "d");
+    ++it;
 
     REQUIRE(!(it != t.end()));
 }
 
 TEST_CASE("DFS_EMPTY_TEST", "[DFS][EMPTY]") {
-    Graph<std::string> stringGraph = makeEmptyGraph();
+    Graph<std::string> stringGraph = TraversalTestHelpers::makeEmptyGraph();
 
     DFS<std::string> t(stringGraph, "a");
     GraphTraversal<std::string>::Iterator it = t.begin();
