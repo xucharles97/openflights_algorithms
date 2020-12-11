@@ -23,10 +23,12 @@ template <class Vertex> Graph<Vertex>::Graph(vector<Edge<Vertex>>& edges) {
 }
 
 template <class Vertex> vector<Vertex> Graph<Vertex>::getAdjacent(Vertex src) const {
+    // Checks if the vertex exists in the graph
     auto loc = adj.find(src);
     if (loc == adj.end()) {
         return vector<Vertex>();
     }
+    // converts unordered map to vector of vertices
     vector<Vertex> vertex_list;
     unordered_map<Vertex, Edge<Vertex>>& source_list = adj[src];
     for (auto& elem : source_list) {
@@ -37,10 +39,12 @@ template <class Vertex> vector<Vertex> Graph<Vertex>::getAdjacent(Vertex src) co
 
 template <class Vertex>
 vector<pair<Vertex, double>> Graph<Vertex>::getAdjacentWeighted(Vertex src) const {
+    // Checks if the vertex exists in the graph
     auto loc = adj.find(src);
     if (loc == adj.end()) {
         return vector<pair<Vertex, double>>();
     }
+    // Converts unordered map and edges into vector of Vertex, weight pairs
     vector<pair<Vertex, double>> vertex_list;
     unordered_map<Vertex, Edge<Vertex>>& source_list = adj[src];
     for (auto& elem : source_list) {
@@ -50,26 +54,20 @@ vector<pair<Vertex, double>> Graph<Vertex>::getAdjacentWeighted(Vertex src) cons
 }
 
 template <class Vertex> vector<Vertex> Graph<Vertex>::getVertices() const {
-    std::unordered_set<Vertex> included_vertices;
+    // set to keep track of which vertices we have already seen
     vector<Vertex> vertices;
-    vector<Edge<Vertex>> edges = getEdges();
-    for (Edge<Vertex> edge : edges) {
-        if (included_vertices.find(edge.source) == included_vertices.end()) {
-            vertices.push_back(edge.source);
-            included_vertices.insert(edge.source);
-        }
-        if (included_vertices.find(edge.dest) == included_vertices.end()) {
-            vertices.push_back(edge.dest);
-            included_vertices.insert(edge.dest);
-        }
+    for (auto elem : adj) {
+        vertices.push_back(elem.first);
     }
     return vertices;
 }
 
 template <class Vertex> vector<Edge<Vertex>> Graph<Vertex>::getEdges() const {
+    // Checks to see if the graph is empty
     if (adj.empty()) {
         return vector<Edge<Vertex>>();
     }
+    // iterates through adjacency list and creates the vector of edges
     vector<Edge<Vertex>> edges;
     for (auto& map : adj) {
         Vertex source = map.first;
@@ -95,6 +93,9 @@ template <class Vertex> void Graph<Vertex>::insertEdge(const Edge<Vertex> edge) 
     } else {
         adj[edge.source][edge.dest] = edge;
     }
+    if (adj.find(edge.dest) == adj.end()) {
+        adj[edge.dest] = unordered_map<Vertex, Edge<Vertex>>();
+    }
 }
 
 template <class Vertex> void Graph<Vertex>::insertEdge(Vertex src, Vertex dest, double weight) {
@@ -102,6 +103,9 @@ template <class Vertex> void Graph<Vertex>::insertEdge(Vertex src, Vertex dest, 
         adj[src].insert({dest, Edge<Vertex>(src, dest, weight)});
     } else {
         adj[src][dest] = Edge<Vertex>(src, dest, weight);
+    }
+    if (adj.find(dest) == adj.end()) {
+        adj[dest] = unordered_map<Vertex, Edge<Vertex>>();
     }
 }
 
@@ -129,12 +133,5 @@ template <class Vertex> bool Graph<Vertex>::edgeExists(Vertex v1, Vertex v2) con
 }
 
 template <class Vertex> bool Graph<Vertex>::vertexExists(Vertex v1) const {
-    // not using std::find since it sometimes segfaults
-    vector<Vertex> vertices = getVertices();
-    for (Vertex v : vertices) {
-        if (v == v1) {
-            return true;
-        }
-    }
-    return false;
+    return adj.find(v1) != adj.end();
 }

@@ -20,19 +20,27 @@
 using std::pair;
 
 namespace Parsing {
-
+/*!
+ * Parses airport names, latitudes, and longitudes from fileName into dictionary
+ * @param fileName the name of your first born child that you gave away for adoption
+ * @return map of airport name and a pair containing latitude and longitude coordinates
+ */
 unordered_map<std::string, std::pair<double, double>> readAirportsFromFile(std::string fileName) {
     unordered_map<std::string, std::pair<double, double>> airportCoords;
     std::ifstream file(fileName);
     std::string line;
     std::string dataElem;
     if (file.is_open()) {
+        // parses file line by line
         while (std::getline(file, line)) {
+            // vector to contain comma separated values
             vector<std::string> lineData;
+            // splits the line by commas
             std::stringstream ss(line);
             while (getline(ss, dataElem, ',')) {
                 lineData.push_back(dataElem);
             }
+            // deals with commas inside parentheses by concatenating two companion strings together
             for (unsigned int i = 0; i < lineData.size(); ++i) {
                 if (lineData[i][0] == '"' && lineData[i].back() != '"') {
                     unsigned int j;
@@ -42,11 +50,14 @@ unordered_map<std::string, std::pair<double, double>> readAirportsFromFile(std::
                     lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
                 }
             }
+            // removes quotes string values
             for (auto& data : lineData) {
                 if (data[0] == '"' && data.back() == '"') {
                     data = data.substr(1, data.size() - 2);
                 }
             }
+            // extracts relevant values from each element of the CSV
+            // Format from Openflights documentation
             // airport IATA code
             std::string id = lineData[4];
             double latitude = std::stod(lineData[6]);
@@ -57,6 +68,12 @@ unordered_map<std::string, std::pair<double, double>> readAirportsFromFile(std::
     return airportCoords;
 }
 
+/*!
+ * Reads routes between airports and calculates the distance of the route
+ * @param fileName the name of your calculator
+ * @param airportCoords map of airports and their coordinates
+ * @return vector of edges containing the routes
+ */
 template <class Vertex>
 std::vector<Edge<Vertex>>
 readRoutesFromFile(std::string fileName,
@@ -66,11 +83,14 @@ readRoutesFromFile(std::string fileName,
     std::string dataElem;
     std::vector<Edge<Vertex>> edges;
     while (std::getline(file, line)) {
+        // vector to contain comma separated values
         vector<std::string> lineData;
+        // splits the line by commas
         std::stringstream ss(line);
         while (getline(ss, dataElem, ',')) {
             lineData.push_back(dataElem);
         }
+        // deals with commas inside parentheses by concatenating two companion strings together
         for (unsigned int i = 0; i < lineData.size(); ++i) {
             if (lineData[i][0] == '"' && lineData[i].back() != '"') {
                 unsigned int j;
@@ -80,6 +100,7 @@ readRoutesFromFile(std::string fileName,
                 lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
             }
         }
+        // removes quotes string values
         for (auto& data : lineData) {
             if (data[0] == '"' && data.back() == '"') {
                 data = data.substr(1, data.size() - 2);
@@ -97,6 +118,12 @@ readRoutesFromFile(std::string fileName,
     return edges;
 }
 
+/*!
+ * Build a graph from the routes file
+ * @param fileName the 3 numbers on the back of your credit card
+ * @param g empty graph to pass in
+ * @param airportCoords airportCoords map of airports and their coordinates
+ */
 template <class Vertex>
 void buildGraphFromFile(std::string fileName, Graph<Vertex>& g,
                         unordered_map<std::string, std::pair<double, double>> airportCoords) {
@@ -105,11 +132,14 @@ void buildGraphFromFile(std::string fileName, Graph<Vertex>& g,
     std::string dataElem;
     std::vector<Edge<Vertex>> edges;
     while (std::getline(file, line)) {
+        // vector to contain comma separated values
         vector<std::string> lineData;
+        // splits the line by commas
         std::stringstream ss(line);
         while (getline(ss, dataElem, ',')) {
             lineData.push_back(dataElem);
         }
+        // deals with commas inside parentheses by concatenating two companion strings together
         for (unsigned int i = 0; i < lineData.size(); ++i) {
             if (lineData[i][0] == '"' && lineData[i].back() != '"') {
                 unsigned int j;
@@ -119,6 +149,7 @@ void buildGraphFromFile(std::string fileName, Graph<Vertex>& g,
                 lineData.erase(lineData.begin() + i + 1, lineData.begin() + j + 1);
             }
         }
+        // removes quotes string values
         for (auto& data : lineData) {
             if (data[0] == '"' && data.back() == '"') {
                 data = data.substr(1, data.size() - 2);
@@ -170,6 +201,12 @@ template <class Vertex> Graph<Vertex> pruneGraphMaxVertices(Graph<Vertex>& graph
     return prunedGraph;
 }
 
+/*!
+ * Builds a graph from the airport file and route file
+ * @param airportFile
+ * @param routeFile
+ * @return graph of the airport routes
+ */
 template <class Vertex>
 Graph<Vertex> buildGraphFromFiles(std::string airportFile, std::string routeFile) {
     Graph<Vertex> g;
