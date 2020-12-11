@@ -16,6 +16,10 @@ template <typename Vertex> class GraphTraversal {
       public:
         Iterator() : traversal(NULL), root(Vertex()) {}
 
+        /**
+         * @param traversal The graph traversal to iterate over
+         * @param root The vertex to start the traversal from
+         */
         Iterator(GraphTraversal<Vertex>* traversal, Vertex root)
             : traversal(traversal), root(root) {
             if (!traversal->empty()) {
@@ -25,6 +29,10 @@ template <typename Vertex> class GraphTraversal {
             }
         }
 
+        /**
+         * Increment the iterator by one unless there are no other elements to traverse
+         * @returns the iterator incremented by one
+         */
         Iterator& operator++() {
             if (!traversal->empty()) {
                 current = traversal->pop();
@@ -39,8 +47,16 @@ template <typename Vertex> class GraphTraversal {
             return *this;
         }
 
+        /**
+         * Dereference operator
+         * @returns the current value of the iterator
+         */
         Vertex operator*() { return current; }
 
+        /**
+         * Not equal to operator
+         * @returns if two iterators are the same. Typically used to determine if the iterator is empty
+         */
         bool operator!=(const Iterator& other) {
             bool thisEmpty = false;
             bool otherEmpty = false;
@@ -68,16 +84,46 @@ template <typename Vertex> class GraphTraversal {
         }
 
       private:
+        // The traversal to iterate over
         GraphTraversal* traversal;
+        
+        // The first vertex in the traversal
         Vertex root;
+
+        // The current value in the traversal
         Vertex current;
     };
 
+    /**
+     * @returns an iterator starting at the root
+     */
     virtual Iterator begin() = 0;
+
+    /**
+     * @returns an iterator that is empty. While iterator != iterator.end(), iterator still has values in it
+     */
     virtual Iterator end() = 0;
+
+    /**
+     * Process adjacent vertices to the parameter
+     * @param vertex the vertex to process adjacent vertices of
+     */
     virtual void add(Vertex vertex) = 0;
+
+    /**
+     * Removes the current item in the iterator
+     * @returns the current item in the iterator
+     */
     virtual Vertex pop() = 0;
+
+    /**
+     * @returns the current item in the iterator
+     */
     virtual Vertex peek() const = 0;
+
+    /**
+     * @returns whether the iterator has any remaining items
+     */
     virtual bool empty() const = 0;
 };
 
