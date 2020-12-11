@@ -17,7 +17,7 @@ Source: [Openflights](https://openflights.org/data.html)
 ## Main
 
 1. `make main` to compile and link
-2. `./main` to run Dijkstra's algorithm and Betweenness Centrality. Dijkstra's algorithm will find the shortest path from a randomly selected Vertex (airport) to every other Vertex in the dataset, as well as specifically outputting the shortest distance and full path to other two other randomly selected vertices. Betweenness Centrality will find the most central Vertex (airport) in the dataset
+2. `./main [number of airports]` to run Dijkstra's algorithm and Betweenness Centrality. The one and only command-line argument is the number of airports to prune to (as the dataset is extremely large). We recommend a value less than 100 to run in about a minute. Dijkstra's algorithm will find the shortest path from a randomly selected Vertex (airport) to every other Vertex in the dataset, as well as specifically outputting the shortest distance and full path to other two other randomly selected vertices. Betweenness Centrality will find the most central Vertex (airport) in the dataset
 
 ## Tests
 

@@ -165,10 +165,23 @@ void buildGraphFromFile(std::string fileName, Graph<Vertex>& g,
     }
 }
 
+/**
+ * Custom comparator helper for pruneGraphMaxVertices()
+ * @param a pair 1
+ * @param b pair 2
+ * @returns less whether a is less than b
+ */
 template <class Vertex> bool cmp(pair<Vertex, int>& a, pair<Vertex, int>& b) {
     return a.second < b.second;
 }
 
+/**
+ * Prunes vertices until there are max N vertices in the given graph. Keeps the most connected
+ * vertices first.
+ * @param graph Graph to prune
+ * @param N Max number of vertices
+ * @returns A pruned Graph with at most N vertices
+ */
 template <class Vertex> Graph<Vertex> pruneGraphMaxVertices(Graph<Vertex>& graph, int N) {
     std::unordered_map<Vertex, int> counts;
     for (auto v : graph.getVertices()) {
