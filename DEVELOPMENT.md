@@ -83,7 +83,7 @@
 ## Madhav
 * Fixed Floyd Warshall bug for min path
 * Added all tests for Floyd Warshall and verified correctness
-* Added Betweeness Centrality
+* Added Betweenness Centrality
 
 ## Elia
 * Added Parsing functions to read from airport and route data files
@@ -95,7 +95,7 @@
 * Implemented thorough tests for parsing/mathfunctions
 * Passes with flying colors
 ## Madhav
-* Added all tests for Betweeness Centrality and verified correctness
+* Added all tests for Betweenness Centrality and verified correctness
 * Add prints for main function (betweenness centrality)
 * Add README.md info
 ## Matt

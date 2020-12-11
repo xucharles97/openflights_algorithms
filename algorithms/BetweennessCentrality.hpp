@@ -18,7 +18,7 @@ using FloydWarshall::shortestPathBetweenAllVertices;
 using std::unordered_map;
 using std::vector;
 
-namespace BetweenessCentrality {
+namespace BetweennessCentrality {
 
 template <class Vertex> Vertex mostCentralVertex(Graph<Vertex>& graph) {
     std::cout << "Computing the shortest path between all airports..." << std::endl;
@@ -57,4 +57,4 @@ template <class Vertex> Vertex mostCentralVertex(Graph<Vertex>& graph) {
     return mostBetweenVertex;
 }
 
-} // namespace BetweenessCentrality
+} // namespace BetweennessCentrality

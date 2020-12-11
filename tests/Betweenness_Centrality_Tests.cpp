@@ -9,16 +9,16 @@
 #include "../graph/Edge.h"
 #include "../graph/Graph.h"
 
-#include "../algorithms/BetweenessCentrality.hpp"
+#include "../algorithms/BetweennessCentrality.hpp"
 
 #include "../catch/catch.hpp"
 
 using std::string;
 using std::vector;
 
-using BetweenessCentrality::mostCentralVertex;
+using BetweennessCentrality::mostCentralVertex;
 
-namespace BetweenessTestHelpers {
+namespace BetweennessTestHelpers {
 
 Graph<string> makeWheelGraph() {
     vector<Edge<string>> strEdges;
@@ -56,30 +56,30 @@ Graph<string> makeEmptyGraph() {
     return stringGraph;
 }
 
-} // namespace BetweenessTestHelpers
+} // namespace BetweennessTestHelpers
 
 /////////////////////////////////////
 ////////////// BASIC ////////////////
 /////////////////////////////////////
 
-TEST_CASE("Betweeness Centrality Wheel", "[Betweeness]") {
-    Graph<string> stringGraph = BetweenessTestHelpers::makeWheelGraph();
+TEST_CASE("Betweenness Centrality Wheel", "[Betweenness]") {
+    Graph<string> stringGraph = BetweennessTestHelpers::makeWheelGraph();
 
     string centralVertex = mostCentralVertex(stringGraph);
 
     REQUIRE(centralVertex == "c");
 }
 
-TEST_CASE("Betweeness Centrality Stick", "[Betweeness]") {
-    Graph<string> stringGraph = BetweenessTestHelpers::makeStickGraph();
+TEST_CASE("Betweenness Centrality Stick", "[Betweenness]") {
+    Graph<string> stringGraph = BetweennessTestHelpers::makeStickGraph();
 
     string centralVertex = mostCentralVertex(stringGraph);
 
     REQUIRE(centralVertex == "b");
 }
 
-TEST_CASE("Betweeness Centrality Empty", "[Betweeness]") {
-    Graph<string> stringGraph = BetweenessTestHelpers::makeEmptyGraph();
+TEST_CASE("Betweenness Centrality Empty", "[Betweenness]") {
+    Graph<string> stringGraph = BetweennessTestHelpers::makeEmptyGraph();
 
     string centralVertex = mostCentralVertex(stringGraph);
 
