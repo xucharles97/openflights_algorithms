@@ -88,9 +88,14 @@ int main() {
     string airportFile = "datasets/airports.txt";
     string routeFile = "datasets/routes.txt";
 
+    // Build entire graph
     Graph<string> graph = buildGraph(airportFile, routeFile);
 
-    runDijkstras(graph);
-    runBetweennessCentrality(graph);
+    // Prune graph to run algorithms faster (only top X vertices)
+    std::cout << "Pruning graph to reduce time" << std::endl;
+    Graph<string> prunedGraph = Parsing::pruneGraphMaxVertices(graph, 500);
+
+    runDijkstras(prunedGraph);
+    runBetweennessCentrality(prunedGraph);
     std::cout << std::endl;
 }
