@@ -7,6 +7,10 @@
 #include <stack>
 #include <unordered_map>
 
+////////////////////////////////////////////////////////////////////////////////////
+//////////////// SEE GraphTraversal.hpp FOR FUNCTION DOCUMENTATION /////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
 template <typename Vertex> class DFS : public GraphTraversal<Vertex> {
   public:
     DFS(Graph<Vertex> graph, Vertex root) : graph(graph), root(root) {
@@ -19,6 +23,7 @@ template <typename Vertex> class DFS : public GraphTraversal<Vertex> {
     }
 
     typename GraphTraversal<Vertex>::Iterator begin() {
+        // Ternary operator used to store default Vertex value in the event an invalid root was passed in
         return typename GraphTraversal<Vertex>::Iterator(this, stack.empty() ? Vertex() : stack.top());
     }
 
@@ -48,9 +53,13 @@ template <typename Vertex> class DFS : public GraphTraversal<Vertex> {
     bool empty() const { return stack.empty(); }
 
   private:
+    // The graph being traversed
     Graph<Vertex> graph;
 
+    // Stack used to store next item to process. Because it's a queue, FILO behavior is observed
     std::stack<Vertex> stack;
+
+    // Unordered map to provide fast lookup time as to whether a vertex has been visited yet
     std::unordered_map<Vertex, bool> visitedmap;
 
     Vertex root;

@@ -7,6 +7,10 @@
 #include <queue>
 #include <unordered_map>
 
+////////////////////////////////////////////////////////////////////////////////////
+//////////////// SEE GraphTraversal.hpp FOR FUNCTION DOCUMENTATION /////////////////
+////////////////////////////////////////////////////////////////////////////////////
+
 template <typename Vertex> class BFS : public GraphTraversal<Vertex> {
   public:
     BFS(Graph<Vertex> graph, Vertex root) : graph(graph), root(root) {
@@ -19,6 +23,7 @@ template <typename Vertex> class BFS : public GraphTraversal<Vertex> {
     }
 
     typename GraphTraversal<Vertex>::Iterator begin() {
+        // Ternary operator used to store default Vertex value in the event an invalid root was passed in
         return typename GraphTraversal<Vertex>::Iterator(this, queue.empty() ? Vertex() : queue.front());
     }
 
@@ -48,9 +53,13 @@ template <typename Vertex> class BFS : public GraphTraversal<Vertex> {
     bool empty() const { return queue.empty(); }
 
   private:
+    // The graph being traversed
     Graph<Vertex> graph;
 
+    // Queue used to store next item to process. Because it's a queue, FIFO behavior is observed
     std::queue<Vertex> queue;
+
+    // Unordered map to provide fast lookup time as to whether a vertex has been visited yet
     std::unordered_map<Vertex, bool> visitedmap;
 
     Vertex root;
