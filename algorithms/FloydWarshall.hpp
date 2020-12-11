@@ -99,14 +99,17 @@ shortestPathBetweenAllVertices(Graph<Vertex>& graph) {
     // Find the minimum distance from each vertex to every other vertex
     // Consider a different number of vertices along the path each time
     std::cout << "Computing the minimum distances..." << std::endl;
-    for (Vertex v : vertices)
-        for (Vertex u : vertices)
-            for (Vertex w : vertices)
+    for (Vertex v : vertices) {
+        for (Vertex u : vertices) {
+            for (Vertex w : vertices) {
                 if (minDistances[u][v] + minDistances[v][w] < minDistances[u][w]) {
                     // Shorter path
                     minDistances[u][w] = minDistances[u][v] + minDistances[v][w];
                     nextStep[u][w] = nextStep[u][v];
                 }
+            }
+        }
+    }
 
     // Now the map contains the best next vertex for each Vertex v to Vertex u
     return nextStep;
