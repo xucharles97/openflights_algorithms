@@ -470,8 +470,8 @@ TEST_CASE("Dijkstra data print statement", "[Dijkstra][Data][Print]") {
 
     Graph<std::string> graph(edges);
     std::string str = Dijkstra::getPrintStatementForDijkstraData<std::string>(graph, "b");
-    std::string expected = "From source vector b:\nVertex d is 4.5 away, coming from vertex "
-                           "c\nThere is no path to a\nVertex c is 1.5 away, coming from vertex b";
+    std::string expected = "From source vector b:\nThere is no path to a\nVertex c is 1.5 away, coming from vertex b\nVertex d is 4.5 away, coming from vertex "
+                           "c";
     REQUIRE(str == expected);
 
     expected = "There is no path from f to g";

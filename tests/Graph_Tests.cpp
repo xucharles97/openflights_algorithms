@@ -18,6 +18,14 @@ TEST_CASE("EDGES WORK WITH INT") {
     REQUIRE(e1 < e2);
 }
 
+TEST_CASE("EDGES WORK WITH STRINGS") {
+    Edge<std::string> e1("0", "1", 0.5);
+    Edge<std::string> e2("0", "1", 3);
+    REQUIRE(e1.getWeight() == 0.5);
+    REQUIRE(e1 == e2);
+    REQUIRE(e1 < e2);
+}
+
 TEST_CASE("GRAPH CONSTRUCTOR WORKS") {
     std::vector<Edge<int>> edges;
     edges.push_back(Edge<int>(0, 1, 0.5));

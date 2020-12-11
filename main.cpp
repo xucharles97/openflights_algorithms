@@ -84,13 +84,28 @@ void runBetweennessCentrality(Graph<string>& graph) {
 //////////////// DRIVER FUNCTION /////////////////
 //////////////////////////////////////////////////
 
-int main() {
+int main(int argc, char** argv) {
+    if (argc != 2) {
+        std::cout << "Please enter the number of airports you'd like to consider as an integer. "
+                     "Nothing more, nothing less."
+                  << std::endl;
+        return -1;
+    }
+
     string airportFile = "datasets/airports.txt";
     string routeFile = "datasets/routes.txt";
 
+    // Build entire graph
     Graph<string> graph = buildGraph(airportFile, routeFile);
 
-    runDijkstras(graph);
-    runBetweennessCentrality(graph);
+    // Prune graph to run algorithms faster (only top X vertices)
+    std::cout << "Pruning graph to a maximum of " << argv[1]
+              << " vertices (airports) to reduce time" << std::endl;
+    Graph<string> prunedGraph = Parsing::pruneGraphMaxVertices(graph, std::stoi(argv[1]));
+
+    runDijkstras(prunedGraph);
+    runBetweennessCentrality(prunedGraph);
     std::cout << std::endl;
+
+    return 0;
 }
