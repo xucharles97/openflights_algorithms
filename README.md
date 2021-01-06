@@ -1,5 +1,5 @@
-# madhav2-mgeimer2-echudov2-cyx2
-Final Project
+# Openflights Algorithms
+This was created as a final project the CS 225 data structures class at UIUC. This repository was copied from the original private repo on Github Enterprise with full permission from all the professor and other group members on January 5th, 2020.
 
 ## Objective
 
